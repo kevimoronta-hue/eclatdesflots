@@ -1,0 +1,21 @@
+{
+  "name": "eclat-des-flots-homepage",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "L'Éclat des Flots homepage + private /admin back-office (Vercel serverless functions, mini CMS).",
+  "scripts": {
+    "start": "npx --yes serve . -l 5173",
+    "serve": "npx --yes serve . -l 5173",
+    "dev": "node dev-server.mjs",
+    "test:admin": "node tests/admin-flow.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@vercel/blob": "^0.27.0",
+    "bcryptjs": "^2.4.3",
+    "libphonenumber-js": "^1.13.11"
+  }
+}
