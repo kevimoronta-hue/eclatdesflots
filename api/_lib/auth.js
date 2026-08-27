@@ -2,6 +2,12 @@
 // Authentication core: password hashing/policy, signed session cookies with a
 // server-side epoch (for global invalidation), CSRF double-submit tokens, the
 // admin user record + secure seed, and unlock-key comparison.
+//
+// Deploy marker — bump to force every function importing this module (login,
+// session, change-password, logout, unlock, content, history, upload) to be
+// rebuilt in the SAME deployment, so they all read one consistent SESSION_SECRET.
+// (Empty commits reuse Vercel's build cache and don't achieve this.)
+// rebuild: 2026-08-27a
 
 import crypto from 'node:crypto';
 import { promises as fs } from 'node:fs';

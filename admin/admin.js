@@ -87,7 +87,7 @@
     api('/api/auth/session').then(function (res) {
       var d = res.data || {};
       if (d.preview) showPreviewBanner();
-      if (d.authenticated && d.mustChangePassword) return showForceChange();
+      state.mustChangePassword = !!(d.authenticated && d.mustChangePassword);
       if (d.authenticated) return loadDashboard();
       if (d.locked) return showLocked();
       return showLogin();
@@ -110,7 +110,7 @@
           btn.disabled = false;
           if (res.data && res.data.locked) return showLocked();
           if (!res.ok) { msg.className = 'msg err'; msg.textContent = (res.data && res.data.error) || 'Connexion impossible.'; return; }
-          if (res.data.mustChangePassword) return showForceChange();
+          state.mustChangePassword = !!res.data.mustChangePassword;
           loadDashboard();
         }).catch(function () { btn.disabled = false; msg.className = 'msg err'; msg.textContent = 'Erreur réseau.'; });
     }
@@ -197,7 +197,7 @@
 
   function loadDashboard() {
     Promise.all([api('/api/schema'), api('/api/content')]).then(function (r) {
-      if (r[0].status === 403) return showForceChange();
+      if (r[0].status === 403) return showLogin();
       if (!r[0].ok) return showLogin();
       state.schema = r[0].data.sections;
       state.content = r[1].data.content;
@@ -228,6 +228,18 @@
     ]);
     var main = el('main', { class: 'main', id: 'main' });
     root.appendChild(el('div', { class: 'app' }, [sidebar, main]));
+
+    // Rappel discret tant que le mot de passe initial « admin » est en place.
+    // Non bloquant : l'admin accède au dashboard et peut définir son mot de passe
+    // quand il le souhaite depuis l'onglet Sécurité.
+    if (state.mustChangePassword && view !== 'security') {
+      main.appendChild(el('div', {
+        style: 'display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:0 0 18px;padding:12px 16px;border:1px solid #E4C36B;background:#FDF6E3;border-radius:10px;font-size:13.5px;color:#6B5514',
+      }, [
+        el('span', { text: 'Mot de passe initial utilisé. Pensez à définir votre mot de passe personnel.' }),
+        el('button', { class: 'btn btn-primary', style: 'flex:none', onclick: function () { renderShell('security'); } }, ['Changer le mot de passe']),
+      ]));
+    }
 
     if (view === 'content') renderContent(main);
     else if (view === 'history') renderHistory(main);
@@ -354,7 +366,7 @@
     btn.disabled = true; msg.className = 'msg'; msg.textContent = '';
     api('/api/content', { method: 'PUT', json: { updates: updates } }).then(function (res) {
       btn.disabled = false;
-      if (res.status === 403) { showForceChange(); return; }
+      if (res.status === 403) { showLogin(); return; }
       if (!res.ok) {
         msg.className = 'msg err';
         msg.textContent = (res.data && res.data.error) || 'Enregistrement impossible.';
@@ -385,7 +397,7 @@
       if (file.size > 8 * 1024 * 1024) { toast('Image trop lourde (8 Mo max).', true); return; }
       toast('Envoi de l’image…');
       api('/api/upload', { method: 'POST', body: file, uploadType: file.type }).then(function (res) {
-        if (res.status === 403) { showForceChange(); return; }
+        if (res.status === 403) { showLogin(); return; }
         if (!res.ok || !res.data.url) { toast((res.data && res.data.error) || 'Échec de l’upload.', true); return; }
         state.pending[field.key] = res.data.url;
         prevImg.src = res.data.url;
@@ -442,6 +454,7 @@
       } }).then(function (res) {
         btn.disabled = false;
         if (res.ok && res.data.ok) {
+          state.mustChangePassword = false; // « admin » n'est plus valide : on retire le rappel
           oldp.value = np.value = cf.value = ''; rules.update();
           msg.className = 'msg ok'; msg.textContent = 'Mot de passe mis à jour.'; toast('Mot de passe mis à jour.');
         } else { msg.className = 'msg err'; msg.textContent = (res.data && res.data.error) || 'Échec.'; }

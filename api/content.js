@@ -67,7 +67,9 @@ export default async function handler(req, res) {
   if (req.method === 'PUT') {
     const session = await getSession(req);
     if (!session) return json(res, 401, { error: 'Non authentifié.' });
-    if (session.user.mustChangePassword) return json(res, 403, { error: 'Changement de mot de passe requis.' });
+    // mustChangePassword ne bloque plus l'accès au dashboard : un admin connecté
+    // (session valide) peut éditer, même sur le mot de passe initial. Le
+    // changement de mot de passe reste disponible dans l'onglet « Sécurité ».
     if (!checkCsrf(req)) return json(res, 403, { error: 'Requête invalide.' });
 
     const body = await readJson(req);

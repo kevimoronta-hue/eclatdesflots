@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   }
   const session = await getSession(req);
   if (!session) return json(res, 401, { error: 'Non authentifié.' });
-  if (session.user.mustChangePassword) return json(res, 403, { error: 'Changement de mot de passe requis.' });
+  // mustChangePassword ne bloque plus l'accès au dashboard (session valide suffit).
   const entries = await readHistory();
   return json(res, 200, { entries });
 }
