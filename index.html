@@ -206,6 +206,12 @@
   #faq .faq-anim > * { transition: opacity 260ms ease, transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1); }
   #faq details:not(.is-open) .faq-anim > * { opacity: 0; transform: translateY(8px); }
   #faq details.is-open .faq-anim > * { opacity: 1; transform: translateY(0); }
+  /* — Rendez-vous : choix WhatsApp / Email (pictos blancs, hover premium discret) — */
+  .rdv-choice { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px 16px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.05); color: #FFFFFF; text-decoration: none; transition: transform 220ms cubic-bezier(0.22,0.61,0.36,1), background 220ms ease, border-color 220ms ease, box-shadow 220ms ease; }
+  .rdv-choice svg { width: 26px; height: 26px; display: block; }
+  .rdv-choice span { font-size: 13px; letter-spacing: 0.02em; color: rgba(255,255,255,0.9); }
+  .rdv-choice:hover { transform: translateY(-3px); background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.28), 0 0 0 1px rgba(180,214,240,0.12); }
+  .rdv-choice:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
   /* — Devis : icônes dans les champs — */
   #devis .field-wrap { position: relative; }
   #devis .field-ic { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 17px; height: 17px; color: color-mix(in srgb, var(--color-text) 42%, transparent); pointer-events: none; }
@@ -293,7 +299,7 @@
       <a href="#contact" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Contact</a>
     </div>
     <div style="justify-self: end; display: flex; align-items: center; gap: 10px">
-      <a data-cms="text:cta.devisLabel" class="btn btn-primary" data-cal-open="" href="#devis" style="padding: 15px 26px; font-size: 15px; border-radius: 999px">Demander un devis</a>
+      <a data-cms="text:cta.devisLabel" class="btn btn-primary" href="#devis" style="padding: 15px 26px; font-size: 15px; border-radius: 999px">Demander un devis</a>
       <button data-burger="" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile" style="display: none; width: 46px; height: 46px; border-radius: 999px; border: 1px solid var(--color-divider); background: rgba(255,255,255,0.7); cursor: pointer; align-items: center; justify-content: center; flex-direction: column; gap: 4px; padding: 0">
         <span data-bar="" style="display: block; width: 18px; height: 1.5px; background: var(--color-text); transition: transform 260ms cubic-bezier(0.22,1,0.36,1), opacity 160ms ease"></span>
         <span data-bar="" style="display: block; width: 18px; height: 1.5px; background: var(--color-text); transition: transform 260ms cubic-bezier(0.22,1,0.36,1), opacity 160ms ease"></span>
@@ -309,7 +315,7 @@
     <a data-drawer-link="" href="#realisations" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Réalisations</a>
     <a data-drawer-link="" href="#faq" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Questions fréquentes</a>
     <a data-drawer-link="" href="#contact" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Contact</a>
-    <a data-cms="text:cta.devisLabel" class="btn btn-primary" data-cal-open="" href="#devis" style="margin-top: 8px; padding: 16px 22px; font-size: 15px; border-radius: 999px">Demander un devis</a>
+    <a data-cms="text:cta.devisLabel" class="btn btn-primary" href="#devis" style="margin-top: 8px; padding: 16px 22px; font-size: 15px; border-radius: 999px">Demander un devis</a>
   </div>
 
 <div style="width: 100%; background: #FFFFFF">
@@ -323,7 +329,7 @@
     <h1 data-reveal="" data-cms="text:hero.title" style="font-size: 54px; line-height: 1.06; margin: 0; max-width: 900px; text-wrap: pretty">Un savoir-faire français au service de votre embarcation.</h1>
     <p data-reveal="" data-cms="text:hero.subtitle" style="font-size: 17px; line-height: 1.6; margin: 0; max-width: 640px; color: color-mix(in srgb, var(--color-text) 78%, transparent)">Expertise, traitement de surface et rénovation complète péniches, logements flottants, bateaux à passagers, navires de commerce et pontons. En cale sèche comme à flot.</p>
     <div data-reveal="" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 0">
-      <a data-cms="text:cta.devisLabel" class="btn btn-primary" data-cal-open="" href="#devis" style="padding: 16px 26px; font-size: 15px; border-radius: 999px">Demander un devis</a>
+      <a data-cms="text:cta.devisLabel" class="btn btn-primary" href="#devis" style="padding: 16px 26px; font-size: 15px; border-radius: 999px">Demander un devis</a>
       <a data-cms="text:hero.ctaSecondary" class="btn btn-secondary" href="#realisations" style="padding: 16px 26px; font-size: 15px; border-radius: 999px">Voir nos réalisations</a>
     </div>
   </header>
@@ -989,29 +995,27 @@
       <p data-cms="text:cta.subtitle" style="margin: 0; color: rgba(255,255,255,0.78); font-size: 16px">Réponse d'un chef de projet sous 24 heures ouvrées.</p>
     </div>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
-      <a data-cms="text:cta.devisLabel" class="btn" data-cal-open="" href="#devis" style="background: #FFFFFF; color: var(--color-accent); padding: 16px 26px; font-size: 15px; border-radius: 999px">Demander un devis</a>
+      <a data-cms="text:cta.devisLabel" class="btn" href="#devis" style="background: #FFFFFF; color: var(--color-accent); padding: 16px 26px; font-size: 15px; border-radius: 999px">Demander un devis</a>
       <a data-cms="text:cta.rdvLabel" class="btn" data-cal-open="" href="#contact" style="border-color: rgba(255,255,255,0.5); color: #FFFFFF; padding: 16px 26px; font-size: 15px; border-radius: 999px">Prendre rendez-vous</a>
     </div>
   </section>
 
   <div data-cal-overlay="" style="position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 40px; background: rgba(7,25,43,0.62); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 0; transition: opacity 260ms ease">
-    <div data-cal-dialog="" role="dialog" aria-modal="true" aria-label="Prendre rendez-vous" style="position: relative; width: min(1080px, 100%); height: min(760px, 100%); display: grid; grid-template-columns: 340px 1fr; background: #FFFFFF; box-shadow: 0 40px 120px rgba(7,25,43,0.45); transform: translateY(18px) scale(0.985); transition: transform 320ms cubic-bezier(0.22,1,0.36,1); overflow: hidden">
-      <div style="background: #072948; padding: 40px 34px; display: flex; flex-direction: column; justify-content: space-between">
-        <div>
-          <img src="assets/logo-footer.png" alt="L'Éclat des Flots" style="height: 44px; width: auto; display: block; margin-bottom: 32px">
-          <h3 style="margin: 0 0 12px; font-size: 26px; color: #FFFFFF">Prendre rendez-vous</h3>
-          <p style="margin: 0; font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.7)">30 minutes avec un chef de projet. Nous passons en revue votre embarcation, l'état actuel et vos échéances, puis nous vous envoyons un chiffrage sous 72 heures.</p>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px; color: rgba(255,255,255,0.8)">
-          <div style="display: flex; gap: 10px"><span style="color: rgba(255,255,255,0.45)">01</span><span>Visio ou téléphone, au choix</span></div>
-          <div style="display: flex; gap: 10px"><span style="color: rgba(255,255,255,0.45)">02</span><span>Aucun engagement, aucune relance</span></div>
-          <div style="display: flex; gap: 10px"><span style="color: rgba(255,255,255,0.45)">03</span><span>Ou directement au +33 6 63 68 41 47</span></div>
-        </div>
+    <div data-cal-dialog="" role="dialog" aria-modal="true" aria-label="Demander un rendez-vous" style="position: relative; width: min(440px, 100%); background: #072948; border-radius: 20px; padding: 42px 32px 34px; text-align: center; box-shadow: 0 40px 120px rgba(7,25,43,0.5), inset 0 0 0 1px rgba(255,255,255,0.06); transform: translateY(18px) scale(0.985); transition: transform 320ms cubic-bezier(0.22,1,0.36,1)">
+      <img src="assets/logo-footer.png" alt="L'Éclat des Flots" style="height: 40px; width: auto; display: block; margin: 0 auto 22px">
+      <h3 style="margin: 0 0 10px; font-size: 24px; color: #FFFFFF">Demander un rendez-vous</h3>
+      <p style="margin: 0 0 28px; font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.72)">Échangez directement avec Rachel pour discuter de votre projet.</p>
+      <div style="display: flex; gap: 14px; justify-content: center">
+        <a data-cms="whatsapp:contact.phone" href="https://wa.me/33663684147" target="_blank" rel="noopener" class="rdv-choice" aria-label="Contacter Rachel sur WhatsApp">
+          <svg viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.53 0-3.03-.42-4.34-1.2l-.31-.18-3.11.82.83-3.04-.2-.32a8.16 8.16 0 0 1-1.25-4.36c0-4.54 3.7-8.24 8.24-8.24zm-4.5 4.4c-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9s.82 2.2.94 2.35c.11.15 1.6 2.45 3.88 3.43.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.33-.54 1.52-1.07.19-.53.19-.98.13-1.07-.06-.09-.21-.15-.44-.26-.23-.11-1.33-.66-1.54-.73-.21-.08-.36-.11-.5.11-.15.22-.58.73-.71.88-.13.15-.26.17-.49.06-.23-.11-.96-.35-1.83-1.13-.68-.6-1.13-1.35-1.27-1.57-.13-.22-.01-.34.1-.45.1-.1.23-.26.34-.39.11-.13.15-.22.23-.37.08-.15.04-.28-.02-.39-.06-.11-.5-1.22-.69-1.67-.18-.44-.37-.38-.5-.39-.13-.01-.28-.01-.43-.01z"></path></svg>
+          <span>WhatsApp</span>
+        </a>
+        <a data-cms="mailto:contact.email" href="mailto:contact@eclatdesflots.fr" class="rdv-choice" aria-label="Envoyer un e-mail à Rachel">
+          <svg viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 9.1 8-4.9V6.5l-8 4.9-8-4.9v1.7l8 4.9z"></path></svg>
+          <span>Email</span>
+        </a>
       </div>
-      <div data-cal-slot="" style="position: relative; background: #F6F8FA; display: flex; align-items: center; justify-content: center; padding: 32px">
-        <p class="text-muted" style="margin: 0; font-size: 14px; text-align: center; max-width: 320px">Le calendrier Calendly s'affichera ici.<br>Renseignez votre lien dans les réglages pour l'activer.</p>
-      </div>
-      <button data-cal-close="" type="button" aria-label="Fermer" style="position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--color-divider); background: rgba(255,255,255,0.9); color: var(--color-text); font-size: 18px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 200ms ease">×</button>
+      <button data-cal-close="" type="button" aria-label="Fermer" style="position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #FFFFFF; font-size: 18px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 200ms ease">×</button>
     </div>
   </div>
 
@@ -1050,7 +1054,7 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;calendlyUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;videoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;scrollReveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;videoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;scrollReveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   componentDidMount() {
     document.querySelectorAll('[data-ba]').forEach((el) => {
@@ -2023,23 +2027,12 @@ class Component extends DCLogic {
     };
     wireMenu();
 
-    const calUrl = this.props.calendlyUrl || '';
     let calWired = false;
     const wireCal = () => {
       const overlay = q('[data-cal-overlay]');
       const dialog = q('[data-cal-dialog]');
-      const slot = q('[data-cal-slot]');
       if (calWired || !overlay || !dialog) return;
       calWired = true;
-      if (calUrl && slot) {
-        slot.innerHTML = '';
-        slot.style.padding = '0';
-        const f = document.createElement('iframe');
-        f.src = calUrl + (calUrl.indexOf('?') > -1 ? '&' : '?') + 'hide_gdpr_banner=1&background_color=f6f8fa&text_color=072948&primary_color=0b3a67';
-        f.title = 'Calendrier de rendez-vous';
-        f.style.cssText = 'width:100%;height:100%;border:0;display:block';
-        slot.appendChild(f);
-      }
       const open = (e) => {
         if (e) e.preventDefault();
         overlay.style.display = 'flex';
