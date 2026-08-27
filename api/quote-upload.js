@@ -5,16 +5,9 @@
 // upload. No file bytes pass through this function.
 
 import { handleUpload } from '@vercel/blob/client';
+import { HAS_BLOB } from './_lib/blob-token.js'; // pointe explicitement le store Blob PUBLIC
 import { rateLimit } from './_lib/ratelimit.js';
 import { json, readJson, clientIp, logEvent } from './_lib/http.js';
-
-// Vercel nomme le token du store Blob d'après le nom du store (ici eclat_READ_WRITE_TOKEN).
-// @vercel/blob lit BLOB_READ_WRITE_TOKEN : on relie tout <store>_READ_WRITE_TOKEN au nom
-// standard, sans jamais exposer la valeur ni la coder en dur.
-if (!process.env.BLOB_READ_WRITE_TOKEN) {
-  const k = Object.keys(process.env).find((n) => /_READ_WRITE_TOKEN$/.test(n) && process.env[n]);
-  if (k) process.env.BLOB_READ_WRITE_TOKEN = process.env[k];
-}
 
 const ALLOWED = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif'];
 const MAX_FILE = 8 * 1024 * 1024;
@@ -25,7 +18,7 @@ export default async function handler(req, res) {
     return json(res, 405, { error: 'Méthode non autorisée.' });
   }
 
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  if (!HAS_BLOB) {
     return json(res, 503, { error: "Le stockage des photos n'est pas configuré." });
   }
 

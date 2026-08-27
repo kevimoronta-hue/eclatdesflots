@@ -7,15 +7,7 @@
 import crypto from 'node:crypto';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
-
-// Relie le token du store Blob (ex. eclat_READ_WRITE_TOKEN, nommé d'après le store)
-// au nom standard BLOB_READ_WRITE_TOKEN attendu par @vercel/blob. Aucune valeur exposée.
-if (!process.env.BLOB_READ_WRITE_TOKEN) {
-  const k = Object.keys(process.env).find((n) => /_READ_WRITE_TOKEN$/.test(n) && process.env[n]);
-  if (k) process.env.BLOB_READ_WRITE_TOKEN = process.env[k];
-}
-
-const HAS_BLOB = Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+import { BLOB_TOKEN, HAS_BLOB } from './blob-token.js'; // store Blob PUBLIC, sélectionné explicitement
 
 const EXT_BY_TYPE = {
   'image/jpeg': 'jpg',
@@ -41,7 +33,7 @@ export async function putImage(buffer, contentType) {
       access: 'public',
       contentType,
       addRandomSuffix: false,
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      token: BLOB_TOKEN,
     });
     return blob.url;
   }
