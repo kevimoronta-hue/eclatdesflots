@@ -212,6 +212,8 @@
   .rdv-choice span { font-size: 13px; letter-spacing: 0.02em; color: rgba(255,255,255,0.9); }
   .rdv-choice:hover { transform: translateY(-3px); background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.28), 0 0 0 1px rgba(180,214,240,0.12); }
   .rdv-choice:focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; }
+  /* — Navigation interne : décalage sous la navbar sticky (chargement direct /#section) — */
+  html { scroll-padding-top: 92px; }
   /* — Devis : icônes dans les champs — */
   #devis .field-wrap { position: relative; }
   #devis .field-ic { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); width: 17px; height: 17px; color: color-mix(in srgb, var(--color-text) 42%, transparent); pointer-events: none; }
@@ -2181,6 +2183,69 @@ class Component extends DCLogic {
     if (this._bootT) clearTimeout(this._bootT);
   }
 }
+</script>
+<script>
+(function () {
+  // — Navigation interne premium (homepage) : logo -> haut, CTA internes -> sections,
+  //   scroll fluide avec offset navbar. Aucune librairie. N'affecte QUE les liens #ancre
+  //   de la même page (les liens externes, mailto, WhatsApp, /admin, légales ne commencent
+  //   pas par # et sont donc ignorés ; les boutons [data-cal-open] ouvrent le dialogue). —
+  var reduceMotion = function () {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  };
+  var navOffset = function () {
+    var nav = document.querySelector('[data-nav]');
+    if (!nav) return 92;
+    var r = nav.getBoundingClientRect();
+    return r.height + 16 /* top sticky */ + 14 /* respiration */;
+  };
+  var raf = null;
+  var ease = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+  var scrollToY = function (targetY) {
+    var doc = document.documentElement;
+    var maxY = Math.max(0, (doc.scrollHeight || 0) - window.innerHeight);
+    targetY = Math.max(0, Math.min(targetY, maxY));
+    var startY = window.scrollY || doc.scrollTop || 0;
+    var dist = targetY - startY;
+    if (Math.abs(dist) < 2) return;                       // déjà à destination : rien de brutal
+    if (reduceMotion()) { window.scrollTo(0, targetY); return; } // accessibilité : saut immédiat
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    var dur = Math.min(800, Math.max(450, Math.abs(dist) * 0.6)); // ~450-800ms selon la distance
+    var t0 = null, stopped = false;
+    var teardown = function () {
+      window.removeEventListener('wheel', onUser);
+      window.removeEventListener('touchstart', onUser);
+      window.removeEventListener('keydown', onUser);
+    };
+    var onUser = function () { stopped = true; if (raf) { cancelAnimationFrame(raf); raf = null; } teardown(); };
+    window.addEventListener('wheel', onUser, { passive: true });
+    window.addEventListener('touchstart', onUser, { passive: true });
+    window.addEventListener('keydown', onUser);
+    var step = function (now) {
+      if (stopped) return;
+      if (t0 === null) t0 = now;
+      var p = Math.min(1, (now - t0) / dur);
+      window.scrollTo(0, startY + dist * ease(p));
+      if (p < 1) raf = requestAnimationFrame(step);
+      else { raf = null; teardown(); }
+    };
+    raf = requestAnimationFrame(step);
+  };
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    if (a.hasAttribute('data-cal-open')) return;          // ouvre le dialogue RDV : pas de scroll
+    var href = a.getAttribute('href') || '';
+    if (href.length < 2) return;                          // '#' seul : on ignore
+    var id = href.slice(1);
+    var target = document.getElementById(id);
+    if (!target) return;                                  // cible inconnue : comportement natif
+    e.preventDefault();
+    if (id === 'accueil') { scrollToY(0); return; }       // logo -> tout en haut
+    var y = target.getBoundingClientRect().top + (window.scrollY || document.documentElement.scrollTop || 0) - navOffset();
+    scrollToY(y);
+  });
+})();
 </script>
 </body>
 </html>
