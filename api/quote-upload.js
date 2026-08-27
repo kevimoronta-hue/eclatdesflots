@@ -13,6 +13,12 @@ const ALLOWED = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/h
 const MAX_FILE = 8 * 1024 * 1024;
 
 export default async function handler(req, res) {
+  // Diagnostic TEMPORAIRE (retiré au commit suivant) : NOMS de variables uniquement,
+  // jamais aucune valeur de token. Sert à identifier la variable du store PUBLIC.
+  if (req.method === 'GET') {
+    const names = Object.keys(process.env).filter((n) => /_READ_WRITE_TOKEN$/i.test(n)).sort();
+    return json(res, 200, { blobTokenVarNames: names, hasBlob: HAS_BLOB });
+  }
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return json(res, 405, { error: 'Méthode non autorisée.' });
