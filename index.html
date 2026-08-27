@@ -3,13 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>L'Éclat des Flots — page d'accueil</title>
+<title>L'Éclat des Flots</title>
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<meta http-equiv="refresh" content="0; url=Accueil.dc.html">
 <link rel="canonical" href="Accueil.dc.html">
+<meta name="robots" content="noindex">
+<!-- Repli sans JavaScript : bascule vers la homepage après un court instant -->
+<meta http-equiv="refresh" content="2; url=Accueil.dc.html">
+<style>
+  :root { --ink: #072948; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: #FFFFFF; color: var(--ink);
+    font: 400 14px/1.5 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    transition: opacity 320ms ease;
+  }
+  body.is-leaving { opacity: 0; }
+  .loader {
+    display: flex; flex-direction: column; align-items: center; gap: 18px;
+    opacity: 0; transform: translateY(6px);
+    animation: loader-in 520ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+  .loader img { height: 56px; width: auto; display: block; }
+  .loader span {
+    font-size: 12.5px; letter-spacing: 0.05em;
+    color: color-mix(in srgb, var(--ink) 52%, #FFFFFF);
+  }
+  @keyframes loader-in { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .loader { animation: none; opacity: 1; transform: none; }
+    body { transition: none; }
+  }
+</style>
 </head>
-<body style="margin:0;font:400 15px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;color:#072948;background:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh">
-<p style="margin:0">Ouverture du design de référence… <a href="Accueil.dc.html" style="color:#0B3A67">Accueil.dc.html</a></p>
+<body>
+  <div class="loader">
+    <img src="assets/logo-nav.png" width="648" height="200" alt="L'Éclat des Flots">
+    <span>Chargement…</span>
+  </div>
+  <script>
+    (function () {
+      var go = function () { location.replace('Accueil.dc.html'); };
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { go(); return; } // mouvement réduit : bascule immédiate, sans animation
+      // court instant sur le logo, puis fondu de sortie vers la homepage
+      setTimeout(function () {
+        document.body.classList.add('is-leaving');
+        setTimeout(go, 300);
+      }, 380);
+    })();
+  </script>
 </body>
 </html>
