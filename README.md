@@ -333,7 +333,7 @@ Two columns `1fr 1fr`, gap 72px, padding `104px 64px`.
 
 Left: 36px heading, 16px lead capped at 480px, then three 46px accent-filled circular contact
 pills with white glyphs — phone (`tel:+33184000000`), e-mail
-(`mailto:contact@eclatdesflots.fr`), LinkedIn (`https://www.linkedin.com/`, `target="_blank" rel="noopener"`).
+(`mailto:contact@leclatdesflots.fr`), LinkedIn (`https://www.linkedin.com/`, `target="_blank" rel="noopener"`).
 **All three URLs are placeholders awaiting the real ones.**
 
 Right: a square-cornered 1px-bordered panel, padding 36px, gap 16px:

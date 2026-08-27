@@ -79,7 +79,7 @@ ${when}
 
 // Returns { ok: true, dev?: boolean }. Throws on misconfiguration or send failure.
 export async function sendQuoteEmail(d) {
-  const to = (process.env.CONTACT_EMAIL || 'contact@eclatdesflots.fr').trim();
+  const to = (process.env.CONTACT_EMAIL || 'contact@leclatdesflots.fr').trim();
   const from = (process.env.QUOTE_FROM_EMAIL || '').trim();
   const subject = "Nouvelle demande de devis — L'Éclat des Flots";
   const { text, html } = buildBodies(d);

@@ -2,7 +2,7 @@
 // POST /api/quote — public quote-request endpoint.
 // Receives JSON: text fields + photo URLs (photos are uploaded directly to Blob
 // by the browser, so no large payload passes through this function). Revalidates
-// everything server-side, then emails contact@eclatdesflots.fr via Resend.
+// everything server-side, then emails contact@leclatdesflots.fr via Resend.
 // Success is returned ONLY if the email actually went out.
 
 import { parsePhoneNumber } from 'libphonenumber-js/max';

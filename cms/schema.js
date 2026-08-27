@@ -140,7 +140,7 @@ export const SECTIONS = [
       { key: 'devis.title', label: 'Titre de section', type: 'text', binding: 'text', default: 'Quelques photos suffisent pour commencer' },
       { key: 'devis.intro', label: 'Paragraphe d’introduction', type: 'multiline', binding: 'text', default: "Indiquez le type d'embarcation, l'état actuel et votre échéance. Un chef de projet revient vers vous sous 72 heures avec un chiffrage détaillé, sans engagement." },
       { key: 'contact.phone', label: 'Téléphone (héro + footer)', type: 'text', binding: 'tel', default: '+33 6 63 68 41 47' },
-      { key: 'contact.email', label: 'E-mail (héro + footer)', type: 'text', binding: 'mailto', default: 'contact@eclatdesflots.fr' },
+      { key: 'contact.email', label: 'E-mail (héro + footer)', type: 'text', binding: 'mailto', default: 'contact@leclatdesflots.fr' },
       { key: 'contact.linkedin', label: 'LinkedIn (héro + footer)', type: 'text', binding: 'href', default: 'https://www.linkedin.com/in/rachel-prudent-651209226?utm_source=share_via&utm_content=profile&utm_medium=member_ios' },
     ],
   },

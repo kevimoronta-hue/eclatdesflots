@@ -100,7 +100,7 @@ async function main() {
   if (after > before) {
     const files = (await fs.readdir(OUTBOX)).sort();
     const mail = JSON.parse(await fs.readFile(path.join(OUTBOX, files[files.length - 1]), 'utf8'));
-    check('I2. recipient = contact@eclatdesflots.fr', mail.to === 'contact@eclatdesflots.fr', mail.to);
+    check('I2. recipient = contact@leclatdesflots.fr', mail.to === 'contact@leclatdesflots.fr', mail.to);
     check('J. reply-to = prospect email', mail.replyTo === VALID.email, mail.replyTo);
     check('J2. subject correct', /Nouvelle demande de devis/.test(mail.subject), mail.subject);
   }
