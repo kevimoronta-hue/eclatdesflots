@@ -6,10 +6,10 @@
 <title>L'Éclat des Flots</title>
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="canonical" href="Accueil.dc.html">
+<link rel="canonical" href="/">
 <meta name="robots" content="noindex">
-<!-- Repli sans JavaScript : bascule vers la homepage après un court instant -->
-<meta http-equiv="refresh" content="2; url=Accueil.dc.html">
+<!-- Repli sans JavaScript : bascule vers la homepage (racine) après un court instant -->
+<meta http-equiv="refresh" content="2; url=/">
 <style>
   :root { --ink: #072948; }
   html, body { height: 100%; }
@@ -45,7 +45,7 @@
   </div>
   <script>
     (function () {
-      var go = function () { location.replace('Accueil.dc.html'); };
+      var go = function () { location.replace('/'); };
       var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduce) { go(); return; } // mouvement réduit : bascule immédiate, sans animation
       // court instant sur le logo, puis fondu de sortie vers la homepage

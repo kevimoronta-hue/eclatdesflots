@@ -66,6 +66,15 @@ const server = http.createServer(async (req, res) => {
       res.statusCode = 404; res.end('Not found'); return;
     }
 
+    // Redirection permanente de l'ancienne URL vers la racine (miroir de vercel.json),
+    // pour éviter deux URLs pour la même page. La racine sert la homepage via le rewrite.
+    if (pathname === '/Accueil.dc.html') {
+      res.statusCode = 308;
+      res.setHeader('Location', '/');
+      res.end();
+      return;
+    }
+
     // static routing ( / -> homepage, mirrors the Vercel rewrite )
     let rel = pathname === '/' ? '/Accueil.dc.html' : pathname;
     if (rel === '/admin' || rel === '/admin/') rel = '/admin/index.html';
