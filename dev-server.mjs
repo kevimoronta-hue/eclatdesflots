@@ -75,8 +75,8 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    // static routing ( / -> homepage, mirrors the Vercel rewrite )
-    let rel = pathname === '/' ? '/Accueil.dc.html' : pathname;
+    // static routing ( / -> homepage = index.html, comme Vercel sert l'index natif )
+    let rel = pathname === '/' ? '/index.html' : pathname;
     if (rel === '/admin' || rel === '/admin/') rel = '/admin/index.html';
     if (rel.endsWith('/')) rel += 'index.html';
     const filePath = path.join(ROOT, rel);
