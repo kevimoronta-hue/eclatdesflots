@@ -1,19 +1,23 @@
 // api/_lib/blob-token.js
-// Sélectionne EXPLICITEMENT le token du store Vercel Blob PUBLIC.
-// En Production, Vercel expose deux tokens Blob (deux stores connectés) :
-//   - BLOB_READ_WRITE_TOKEN         -> nouveau store PUBLIC (nom standard Vercel)
-//   - eclat_READ_WRITE_TOKEN        -> ancien store PRIVÉ  (volontairement IGNORÉ)
-// On prend le token du store PUBLIC (nom standard, éventuellement un futur
-// eclat_public_READ_WRITE_TOKEN) et on n'utilise JAMAIS eclat_READ_WRITE_TOKEN.
+// Sélectionne le token du store Vercel Blob PUBLIC, en EXCLUANT explicitement l'ancien
+// store PRIVÉ (eclat_READ_WRITE_TOKEN). Priorité au nom standard BLOB_READ_WRITE_TOKEN ;
+// sinon toute variable *_READ_WRITE_TOKEN NON VIDE autre que le store privé connu.
 // Aucune valeur codée en dur ni exposée : lecture via process.env côté serveur uniquement.
 
-const BLOB_TOKEN =
-  process.env.BLOB_READ_WRITE_TOKEN ||          // store PUBLIC (nom standard présent en prod)
-  process.env.eclat_public_READ_WRITE_TOKEN ||  // si le store public est un jour nommé ainsi
-  '';
+const PRIVATE_STORE_VAR = 'eclat_READ_WRITE_TOKEN'; // ancien store PRIVÉ — jamais utilisé
 
-// @vercel/blob lit process.env.BLOB_READ_WRITE_TOKEN par défaut : on s'assure qu'il pointe
-// bien le store PUBLIC choisi (et jamais l'ancien store privé).
+function pickBlobToken() {
+  if (process.env.BLOB_READ_WRITE_TOKEN) return process.env.BLOB_READ_WRITE_TOKEN;
+  const key = Object.keys(process.env).find(
+    (n) => /_READ_WRITE_TOKEN$/i.test(n) && n !== PRIVATE_STORE_VAR && process.env[n]
+  );
+  return key ? process.env[key] : '';
+}
+
+const BLOB_TOKEN = pickBlobToken();
+
+// @vercel/blob lit process.env.BLOB_READ_WRITE_TOKEN par défaut : on le force sur le store
+// PUBLIC choisi pour que handleUpload() / put() l'utilisent (et jamais l'ancien store privé).
 if (BLOB_TOKEN) process.env.BLOB_READ_WRITE_TOKEN = BLOB_TOKEN;
 
 export { BLOB_TOKEN };
