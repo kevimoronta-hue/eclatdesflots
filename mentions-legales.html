@@ -7,6 +7,9 @@
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="canonical" href="https://eclatdesflots.fr/mentions-legales">
+<link rel="alternate" hreflang="fr" href="https://eclatdesflots.fr/mentions-legales">
+<link rel="alternate" hreflang="en" href="https://eclatdesflots.fr/en/legal-notice">
+<link rel="alternate" hreflang="x-default" href="https://eclatdesflots.fr/mentions-legales">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="L'Éclat des Flots">
 <meta property="og:title" content="Mentions légales | L'Éclat des Flots">
@@ -28,10 +31,16 @@
 
 <nav class="legal-nav" aria-label="Navigation">
   <a class="logo" href="/" aria-label="L'Éclat des Flots — accueil"><img src="/assets/logo-nav.png" alt="L'Éclat des Flots"></a>
-  <a class="legal-back" href="/" aria-label="Retour à l'accueil">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
-    Retour
-  </a>
+  <div class="legal-nav-right">
+    <div class="lang-switch" role="group" aria-label="Language / Langue">
+      <a href="/mentions-legales" data-lang-btn="fr" hreflang="fr" lang="fr" aria-label="Français">FR</a>
+      <a href="/en/legal-notice" data-lang-btn="en" hreflang="en" lang="en" aria-label="English">EN</a>
+    </div>
+    <a class="legal-back" href="/" aria-label="Retour à l'accueil">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+      Retour
+    </a>
+  </div>
 </nav>
 
 <main class="legal-main">
@@ -135,5 +144,19 @@
   </div>
 </footer>
 
+<script>
+/* Sélecteur de langue : état actif + mémorisation du choix. */
+(function () {
+  var active = (document.documentElement.getAttribute('lang') === 'en') ? 'en' : 'fr';
+  var btns = document.querySelectorAll('[data-lang-btn]');
+  for (var i = 0; i < btns.length; i++) {
+    (function (a) {
+      var v = a.getAttribute('data-lang-btn');
+      if (v === active) { a.classList.add('is-active'); a.setAttribute('aria-current', 'true'); }
+      a.addEventListener('click', function () { try { localStorage.setItem('edf_lang', v); } catch (e) {} });
+    })(btns[i]);
+  }
+})();
+</script>
 </body>
 </html>

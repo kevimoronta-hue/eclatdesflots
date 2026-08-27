@@ -8,6 +8,9 @@
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="canonical" href="https://eclatdesflots.fr/">
+<link rel="alternate" hreflang="fr" href="https://eclatdesflots.fr/">
+<link rel="alternate" hreflang="en" href="https://eclatdesflots.fr/en">
+<link rel="alternate" hreflang="x-default" href="https://eclatdesflots.fr/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="L'Éclat des Flots">
 <meta property="og:title" content="L'Éclat des Flots — Rénovation et entretien d'embarcations fluviales">
@@ -24,6 +27,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://eclatdesflots.fr/#website","url":"https://eclatdesflots.fr/","name":"L'Éclat des Flots","inLanguage":"fr-FR","publisher":{"@id":"https://eclatdesflots.fr/#business"}},{"@type":"LocalBusiness","@id":"https://eclatdesflots.fr/#business","name":"L'Éclat des Flots","url":"https://eclatdesflots.fr/","image":"https://eclatdesflots.fr/assets/og-image.jpg","email":"contact@eclatdesflots.fr","telephone":"+33663684147","address":{"@type":"PostalAddress","streetAddress":"24 Bis Avenue de la Carelle","postalCode":"94290","addressLocality":"Villeneuve-le-Roi","addressCountry":"FR"},"areaServed":"Île-de-France","description":"Entretien, réparation, traitement de surface et rénovation complète d'embarcations fluviales — péniches, bateaux à passagers, pontons, navires de commerce.","makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Expertise & diagnostic","description":"Visite à bord, relevé de l'état des œuvres vives et mortes, mesures et photographies annotées."}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Peinture & traitement de surface","description":"Entretien courant ou neuvage avec des systèmes professionnels adaptés au milieu fluvial : époxy, polyuréthane, antirouille, antifouling."}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Rénovation complète","description":"Décapage, traitement anticorrosion, remise en état des œuvres vives et des œuvres mortes, en cale sèche ou à flot."}}]}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Combien de temps le bateau reste-t-il immobilisé ?","acceptedAnswer":{"@type":"Answer","text":"Cela dépend du périmètre : deux à cinq jours pour un entretien courant à flot, trois à six semaines pour un décapage complet avec système époxy en cale sèche. La durée est engagée dans le devis, avec une date de remise à l'eau."}},{"@type":"Question","name":"Intervenez-vous à flot ou uniquement en cale sèche ?","acceptedAnswer":{"@type":"Answer","text":"Les deux. Œuvres mortes, superstructures et retouches d'entretien se traitent à flot. Le décapage des œuvres vives et l'antifouling exigent une cale sèche : nous organisons le passage et l'intégrons au planning."}},{"@type":"Question","name":"Quels produits utilisez-vous ?","acceptedAnswer":{"@type":"Answer","text":"Des systèmes professionnels adaptés à l'eau douce : primaires antirouille, époxy bi-composant, finitions polyuréthane et antifouling. Les fiches techniques des produits appliqués sont remises dans le dossier de réception."}},{"@type":"Question","name":"Sur quelles zones géographiques intervenez-vous ?","acceptedAnswer":{"@type":"Answer","text":"Île-de-France et bassin Seine-Oise-Marne en intervention courante, réseau Seine-Nord Europe pour les chantiers planifiés. Au-delà, le déplacement est étudié au cas par cas et chiffré dans le devis."}},{"@type":"Question","name":"Pouvez-vous répondre à un marché public ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Nous fournissons KBIS, attestations d'assurance, références de chantiers comparables et mémoire technique. Nous répondons également en groupement lorsque le lot dépasse notre périmètre."}}]}</script>
 <script src="./support.js"></script>
+<script src="./i18n.js"></script>
 <script src="./cms-hydrate.js" defer></script>
 </head>
 <body>
@@ -325,21 +329,34 @@
     [data-timeline] > div[data-step] > div { grid-column: 1 !important; }
     [data-line-track], [data-line-fill] { left: 20px !important; }
   }
+  /* — Sélecteur de langue FR / EN : segmenté, compact, discret — */
+  .lang-switch { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(11,58,103,0.06); border: 1px solid rgba(11,58,103,0.12); flex: none; }
+  .lang-switch a { display: inline-flex; align-items: center; justify-content: center; min-width: 30px; padding: 5px 9px; font-size: 12px; font-weight: 600; letter-spacing: 0.03em; line-height: 1; color: color-mix(in srgb, var(--color-text) 58%, transparent); text-decoration: none; border-radius: 999px; transition: color 200ms ease, background 200ms ease, box-shadow 200ms ease; }
+  .lang-switch a:hover { color: var(--color-accent); }
+  .lang-switch a.is-active { color: var(--color-accent); background: #FFFFFF; box-shadow: 0 1px 3px rgba(7,41,72,0.12), inset 0 0 0 1px rgba(11,58,103,0.06); }
+  .lang-switch a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  /* Variante tiroir mobile : centrée, un peu plus aérée */
+  .lang-switch--drawer { align-self: center; margin-top: 6px; }
+  .lang-switch--drawer a { min-width: 40px; padding: 8px 14px; font-size: 13px; }
 </style>
 </helmet>
 
   <nav data-nav="" style="position: sticky; top: 16px; z-index: 30; margin: 16px 32px 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px; padding: 8px 10px 8px 18px; border-radius: 999px; background: linear-gradient(160deg, rgba(255,255,255,0.52), rgba(255,255,255,0.24) 46%, rgba(255,255,255,0.4)); border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 10px 40px rgba(7,41,72,0.08), inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -1px 0 rgba(7,41,72,0.06), inset 0 0 22px rgba(255,255,255,0.35); -webkit-backdrop-filter: blur(26px) saturate(190%) brightness(1.06); backdrop-filter: blur(26px) saturate(190%) brightness(1.06); transition: background 320ms ease, box-shadow 320ms ease, backdrop-filter 320ms ease, -webkit-backdrop-filter 320ms ease">
     <a href="#accueil" style="display: flex; align-items: center; justify-self: start; text-decoration: none"><img src="assets/logo-nav.png" alt="L'Éclat des Flots — rénovation navale fluviale" style="height: 46px; width: auto; display: block"></a>
     <div style="display: flex; align-items: center; gap: 10px; justify-self: center">
-      <a href="#services" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Services</a>
-      <a href="#embarcations" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Embarcations</a>
-      <a href="#methode" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Méthode</a>
-      <a href="#realisations" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Réalisations</a>
-      <a href="#contact" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Contact</a>
+      <a data-i18n="nav.services" href="#services" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Services</a>
+      <a data-i18n="nav.embarcations" href="#embarcations" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Embarcations</a>
+      <a data-i18n="nav.methode" href="#methode" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Méthode</a>
+      <a data-i18n="nav.realisations" href="#realisations" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Réalisations</a>
+      <a data-i18n="nav.contact" href="#contact" style="font-size: 16px; color: var(--color-text); text-decoration: none; padding: 10px 18px; border-radius: 999px; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease" style-hover="background: rgba(11,58,103,0.10); box-shadow: 0 0 0 1px rgba(11,58,103,0.10), 0 6px 22px rgba(11,58,103,0.20); color: #0B3A67;">Contact</a>
     </div>
     <div style="justify-self: end; display: flex; align-items: center; gap: 10px">
+      <div class="lang-switch" role="group" aria-label="Language / Langue">
+        <a href="/" data-lang-btn="fr" hreflang="fr" lang="fr" aria-label="Français">FR</a>
+        <a href="/en" data-lang-btn="en" hreflang="en" lang="en" aria-label="English">EN</a>
+      </div>
       <a data-cms="text:cta.devisLabel" class="btn btn-primary" href="#devis" style="padding: 15px 26px; font-size: 15px; border-radius: 999px">Demander un devis</a>
-      <button data-burger="" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile" style="display: none; width: 46px; height: 46px; border-radius: 999px; border: 1px solid var(--color-divider); background: rgba(255,255,255,0.7); cursor: pointer; align-items: center; justify-content: center; flex-direction: column; gap: 4px; padding: 0">
+      <button data-burger="" type="button" data-i18n-al="nav.burgerOpen" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu-mobile" style="display: none; width: 46px; height: 46px; border-radius: 999px; border: 1px solid var(--color-divider); background: rgba(255,255,255,0.7); cursor: pointer; align-items: center; justify-content: center; flex-direction: column; gap: 4px; padding: 0">
         <span data-bar="" style="display: block; width: 18px; height: 1.5px; background: var(--color-text); transition: transform 260ms cubic-bezier(0.22,1,0.36,1), opacity 160ms ease"></span>
         <span data-bar="" style="display: block; width: 18px; height: 1.5px; background: var(--color-text); transition: transform 260ms cubic-bezier(0.22,1,0.36,1), opacity 160ms ease"></span>
         <span data-bar="" style="display: block; width: 18px; height: 1.5px; background: var(--color-text); transition: transform 260ms cubic-bezier(0.22,1,0.36,1), opacity 160ms ease"></span>
@@ -348,13 +365,17 @@
   </nav>
 
   <div id="menu-mobile" data-drawer="" style="position: fixed; left: 16px; right: 16px; top: 84px; z-index: 40; display: none; flex-direction: column; padding: 10px; border-radius: 26px; background: rgba(255,255,255,0.72); border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 24px 64px rgba(7,41,72,0.20); -webkit-backdrop-filter: blur(26px) saturate(180%); backdrop-filter: blur(26px) saturate(180%); opacity: 0; transform: translateY(-8px) scale(0.985); transform-origin: top center; transition: opacity 320ms cubic-bezier(0.22,1,0.36,1), transform 420ms cubic-bezier(0.22,1,0.36,1)">
-    <a data-drawer-link="" href="#services" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Services</a>
-    <a data-drawer-link="" href="#embarcations" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Embarcations</a>
-    <a data-drawer-link="" href="#methode" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Méthode</a>
-    <a data-drawer-link="" href="#realisations" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Réalisations</a>
-    <a data-drawer-link="" href="#faq" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Questions fréquentes</a>
-    <a data-drawer-link="" href="#contact" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Contact</a>
+    <a data-drawer-link="" data-i18n="nav.services" href="#services" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Services</a>
+    <a data-drawer-link="" data-i18n="nav.embarcations" href="#embarcations" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Embarcations</a>
+    <a data-drawer-link="" data-i18n="nav.methode" href="#methode" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Méthode</a>
+    <a data-drawer-link="" data-i18n="nav.realisations" href="#realisations" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Réalisations</a>
+    <a data-drawer-link="" data-i18n="nav.faq" href="#faq" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Questions fréquentes</a>
+    <a data-drawer-link="" data-i18n="nav.contact" href="#contact" style="padding: 16px 18px; font-size: 17px; color: var(--color-text); text-decoration: none; border-radius: 14px">Contact</a>
     <a data-cms="text:cta.devisLabel" class="btn btn-primary" href="#devis" style="margin-top: 8px; padding: 16px 22px; font-size: 15px; border-radius: 999px">Demander un devis</a>
+    <div class="lang-switch lang-switch--drawer" role="group" aria-label="Language / Langue">
+      <a href="/" data-lang-btn="fr" hreflang="fr" lang="fr" aria-label="Français">FR</a>
+      <a href="/en" data-lang-btn="en" hreflang="en" lang="en" aria-label="English">EN</a>
+    </div>
   </div>
 
 <div style="width: 100%; background: #FFFFFF">
@@ -416,35 +437,35 @@
         <div data-video-fs="" style="position: absolute; inset: 0; background: #000000; display: flex; align-items: center; justify-content: center; overflow: hidden">
           <div data-video="" data-video-frame="" style="position: relative; height: 100%; aspect-ratio: 9 / 16; background: #000000; overflow: hidden; flex: 0 0 auto; box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 0 0 1px rgba(255,255,255,0.05)">
             <div data-wistia="" class="wistia_embed wistia_async_o968et3qik" style="position: absolute; inset: 0; width: 100%; height: 100%">&nbsp;</div>
-            <button data-video-surface="" type="button" aria-label="Lecture / pause" style="position: absolute; inset: 0; border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer; display: block"></button>
+            <button data-video-surface="" type="button" data-i18n-al="video.playpause" aria-label="Lecture / pause" style="position: absolute; inset: 0; border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer; display: block"></button>
             <div data-video-poster="" style="position: absolute; inset: 0; background: #000000; pointer-events: none"></div>
-            <span data-video-label="" style="position: absolute; left: 20px; bottom: 18px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); pointer-events: none">Vidéo — chantier en cale sèche</span>
+            <span data-video-label="" data-i18n="video.label" style="position: absolute; left: 20px; bottom: 18px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); pointer-events: none">Vidéo — chantier en cale sèche</span>
             <div data-video-loader="" style="position: absolute; left: 50%; top: 50%; width: 42px; height: 42px; margin: -21px 0 0 -21px; border-radius: 999px; border: 2px solid rgba(140,186,226,0.28); border-top-color: #4E8FCB; display: none; animation: vcspin 780ms linear infinite; pointer-events: none"></div>
-            <button data-video-play="" type="button" aria-label="Lire la vidéo" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 148px; height: 148px; border-radius: 999px; border: 0; background: transparent; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 1; transition: transform 260ms ease, opacity 220ms ease"><span style="position: absolute; width: 104px; height: 104px; border-radius: 999px; background: linear-gradient(160deg, rgba(24,84,143,0.86), rgba(11,58,103,0.72)); border: 1px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.34), 0 8px 26px rgba(0,0,0,0.34); pointer-events: none"></span><svg data-video-play-icon="" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" style="position: relative; margin-left: 3px"><path d="M8.7 17.4V5.4l10.6 6.5-8.1 5"></path></svg><svg data-video-replay-icon="" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" style="position: relative; display: none"><path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v4h-4"></path></svg></button>
+            <button data-video-play="" type="button" data-i18n-al="video.play" aria-label="Lire la vidéo" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 148px; height: 148px; border-radius: 999px; border: 0; background: transparent; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 1; transition: transform 260ms ease, opacity 220ms ease"><span style="position: absolute; width: 104px; height: 104px; border-radius: 999px; background: linear-gradient(160deg, rgba(24,84,143,0.86), rgba(11,58,103,0.72)); border: 1px solid rgba(255,255,255,0.22); box-shadow: inset 0 1px 0 rgba(255,255,255,0.34), 0 8px 26px rgba(0,0,0,0.34); pointer-events: none"></span><svg data-video-play-icon="" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" style="position: relative; margin-left: 3px"><path d="M8.7 17.4V5.4l10.6 6.5-8.1 5"></path></svg><svg data-video-replay-icon="" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" style="position: relative; display: none"><path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v4h-4"></path></svg></button>
           <div data-vc="" style="position: absolute; left: 0; right: 0; bottom: 0; display: none; align-items: center; gap: 16px; padding: 14px 18px 14px; background: linear-gradient(to top, rgba(7,41,72,0.74), rgba(7,41,72,0.42)); backdrop-filter: blur(14px) saturate(1.25); -webkit-backdrop-filter: blur(14px) saturate(1.25); border-top: 1px solid rgba(140,186,226,0.26); box-shadow: inset 0 1px 0 rgba(180,214,240,0.16), 0 -6px 24px rgba(3,16,30,0.34); font-family: Geist, sans-serif; color: #FFFFFF">
-            <button data-vc-play="" type="button" aria-label="Lecture / pause" style="flex: 0 0 auto; width: 34px; height: 34px; border: 0; padding: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.88; transition: opacity 180ms ease">
+            <button data-vc-play="" type="button" data-i18n-al="video.playpause" aria-label="Lecture / pause" style="flex: 0 0 auto; width: 34px; height: 34px; border: 0; padding: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.88; transition: opacity 180ms ease">
               <svg data-vc-icon-play="" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" style="display: none; margin-left: 2px"><path d="M8.7 17.4V5.4l10.6 6.5-8.1 5"></path></svg>
               <svg data-vc-icon-pause="" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 5v14M15 5v14"></path></svg>
             </button>
             <span data-vc-cur="" style="flex: 0 0 auto; font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; color: rgba(255,255,255,0.86)">0:00</span>
-            <div data-vc-track="" data-vc-seek="" role="slider" aria-label="Progression" tabindex="0" style="position: relative; flex: 1 1 auto; min-width: 64px; height: 16px; display: flex; align-items: center; cursor: pointer">
+            <div data-vc-track="" data-vc-seek="" role="slider" data-i18n-al="video.progress" aria-label="Progression" tabindex="0" style="position: relative; flex: 1 1 auto; min-width: 64px; height: 16px; display: flex; align-items: center; cursor: pointer">
               <div style="position: absolute; left: 0; right: 0; height: 3px; background: rgba(214,231,245,0.28)"></div>
               <div data-vc-fill="" style="position: absolute; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, #0B3A67, #4E8FCB)"></div>
               <div data-vc-knob="" style="position: absolute; left: 0%; width: 11px; height: 11px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 3px rgba(11,58,103,0.55), 0 1px 4px rgba(0,0,0,0.4); transform: translateX(-50%); opacity: 0; transition: opacity 180ms ease, width 150ms ease, height 150ms ease; pointer-events: none"></div>
             </div>
             <span data-vc-dur="" style="flex: 0 0 auto; font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: 0.02em; color: rgba(255,255,255,0.6)">0:00</span>
             <div data-vc-volgroup="" style="flex: 0 0 auto; display: flex; align-items: center; gap: 8px">
-              <button data-vc-vol="" type="button" aria-label="Couper le son" style="width: 30px; height: 30px; border: 0; padding: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.88; transition: opacity 180ms ease">
+              <button data-vc-vol="" type="button" data-i18n-al="video.mute" aria-label="Couper le son" style="width: 30px; height: 30px; border: 0; padding: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.88; transition: opacity 180ms ease">
                 <svg data-vc-icon-vol="" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M4 9.5h3L12 5.5v13L7 14.5H4z"></path><path data-vc-wave="" d="M16 9.2a4 4 0 0 1 0 5.6"></path></svg>
                 <svg data-vc-icon-mute="" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" style="display: none"><path d="M4 9.5h3L12 5.5v13L7 14.5H4z"></path><path d="M16.5 10l4 4M20.5 10l-4 4"></path></svg>
               </button>
-              <div data-vc-track="" data-vc-volrange="" role="slider" aria-label="Volume" tabindex="0" style="position: relative; width: 72px; height: 16px; display: flex; align-items: center; cursor: pointer">
+              <div data-vc-track="" data-vc-volrange="" role="slider" data-i18n-al="video.volume" aria-label="Volume" tabindex="0" style="position: relative; width: 72px; height: 16px; display: flex; align-items: center; cursor: pointer">
                 <div style="position: absolute; left: 0; right: 0; height: 3px; background: rgba(214,231,245,0.28)"></div>
                 <div data-vc-volfill="" style="position: absolute; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #0B3A67, #4E8FCB)"></div>
                 <div data-vc-knob="" style="position: absolute; left: 100%; width: 9px; height: 9px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 0 0 3px rgba(11,58,103,0.5); transform: translateX(-50%); opacity: 0; transition: opacity 180ms ease; pointer-events: none"></div>
               </div>
             </div>
-            <button data-vc-fs="" type="button" aria-label="Plein écran" style="flex: 0 0 auto; width: 30px; height: 30px; border: 0; padding: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.88; transition: opacity 180ms ease">
+            <button data-vc-fs="" type="button" data-i18n-al="video.fullscreen" aria-label="Plein écran" style="flex: 0 0 auto; width: 30px; height: 30px; border: 0; padding: 0; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.88; transition: opacity 180ms ease">
               <svg data-vc-icon-fs="" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg>
               <svg data-vc-icon-exitfs="" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true" style="display: none"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"></path></svg>
             </button>
@@ -494,14 +515,14 @@
           <h3 data-cms="text:services.2.title" style="margin: 0 0 10px; font-size: 24px">Peinture &amp; traitement de surface</h3>
           <p data-cms="text:services.2.desc" class="text-muted" style="margin: 0 0 14px; font-size: 15px; max-width: 640px">Entretien courant ou neuvage, avec des systèmes professionnels adaptés au milieu fluvial.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 8px">
-            <span class="tag tag-neutral">Époxy</span>
-            <span class="tag tag-neutral">Polyuréthane</span>
-            <span class="tag tag-neutral">Antirouille</span>
-            <span class="tag tag-neutral">Antifouling</span>
+            <span class="tag tag-neutral" data-i18n="tag.epoxy">Époxy</span>
+            <span class="tag tag-neutral" data-i18n="tag.polyurethane">Polyuréthane</span>
+            <span class="tag tag-neutral" data-i18n="tag.antirust">Antirouille</span>
+            <span class="tag tag-neutral" data-i18n="tag.antifouling">Antifouling</span>
           </div>
           <div style="display: inline-flex; align-items: center; gap: 11px; margin-top: 18px; max-width: 100%; padding: 8px 13px 8px 9px; background: var(--color-surface); border: 1px solid var(--color-divider); border-radius: 12px">
             <img src="assets/jotun-logo.webp" alt="Jotun" width="1280" height="501" style="display: block; height: 22px; width: auto; border-radius: 3px; flex: none">
-            <span class="text-muted" style="font-size: 13px; line-height: 1.3; letter-spacing: -0.005em">Peintures professionnelles Jotun</span>
+            <span class="text-muted" data-i18n="jotun.caption" style="font-size: 13px; line-height: 1.3; letter-spacing: -0.005em">Peintures professionnelles Jotun</span>
           </div>
         </div>
       </div>
@@ -613,16 +634,16 @@
         <div data-ba="" style="--p: 50%; width: 100%; position: relative; height: 440px; overflow: hidden; background: #E9EEF3">
           <div style="position: absolute; inset: 0"><img data-cms="src:project1.beforeImage" src="assets/bretagne-coque-avant-43.webp" alt="Coque du yacht fluvial Bretagne en cale sèche avant traitement, bande de flottaison corrodée" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 33%; display: block"></div>
           <div data-ba-after="" style="position: absolute; inset: 0; clip-path: inset(0 0 0 var(--p))"><img data-cms="src:project1.afterImage" src="assets/bretagne-coque-apres-43.webp" alt="Même coque après décapage et application de l'époxy, bande de flottaison nette" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block"></div>
-          <span style="position: absolute; left: 18px; top: 18px; pointer-events: none; padding: 6px 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(7,25,43,0.62); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px)">Avant</span>
-          <span style="position: absolute; right: 18px; top: 18px; pointer-events: none; padding: 6px 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(11,58,103,0.78); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px)">Après</span>
+          <span style="position: absolute; left: 18px; top: 18px; pointer-events: none; padding: 6px 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(7,25,43,0.62); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px)" data-i18n="ba.before">Avant</span>
+          <span style="position: absolute; right: 18px; top: 18px; pointer-events: none; padding: 6px 12px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(11,58,103,0.78); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px)" data-i18n="ba.after">Après</span>
           <div data-ba-line="" style="position: absolute; top: 0; bottom: 0; left: var(--p); width: 2px; margin-left: -1px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(7,25,43,0.18); pointer-events: none"></div>
-          <button data-ba-handle="" type="button" role="slider" tabindex="0" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="position: absolute; top: 50%; left: var(--p); transform: translate(-50%, -50%); width: 56px; height: 56px; border-radius: 999px; border: 1px solid rgba(7,25,43,0.12); background: #FFFFFF; box-shadow: 0 10px 30px rgba(7,25,43,0.24); cursor: ew-resize; touch-action: none; display: flex; align-items: center; justify-content: center; gap: 4px; color: #0B3A67">
+          <button data-ba-handle="" type="button" role="slider" tabindex="0" data-i18n-al="ba.compare" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="position: absolute; top: 50%; left: var(--p); transform: translate(-50%, -50%); width: 56px; height: 56px; border-radius: 999px; border: 1px solid rgba(7,25,43,0.12); background: #FFFFFF; box-shadow: 0 10px 30px rgba(7,25,43,0.24); cursor: ew-resize; touch-action: none; display: flex; align-items: center; justify-content: center; gap: 4px; color: #0B3A67">
             <svg width="9" height="16" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 2 1 8l6 6"></path></svg>
             <svg width="9" height="16" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 2 6 6-6 6"></path></svg>
           </button>
         </div>
         <div style="padding: 20px 24px; display: flex; flex-direction: column; gap: 6px">
-          <span style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C8A99">Cale sèche · 2025</span>
+          <span data-i18n="project1.meta" style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #7C8A99">Cale sèche · 2025</span>
           <span class="card-title" data-cms="text:project1.title" style="font-size: 23px">Rénovation de coque — Yacht fluvial en acier</span>
         </div>
       </div>
@@ -631,10 +652,10 @@
           <div data-ba="" style="--p: 50%; width: 100%; position: relative; flex: 1; min-height: 140px; overflow: hidden; background: #E9EEF3">
             <div style="position: absolute; inset: 0"><img data-cms="src:project2.beforeImage" src="assets/pont-revetement-avant-w.webp" alt="Pont d'un bateau à passagers avant rénovation, revêtement bleu usé et retouché par plaques" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block"></div>
             <div data-ba-after="" style="position: absolute; inset: 0; clip-path: inset(0 0 0 var(--p))"><img data-cms="src:project2.afterImage" src="assets/pont-revetement-apres-w.webp" alt="Même pont après rénovation du revêtement, finition bleue uniforme" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block"></div>
-            <span style="position: absolute; left: 14px; top: 14px; pointer-events: none; padding: 5px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(7,25,43,0.62)">Avant</span>
-            <span style="position: absolute; right: 14px; top: 14px; pointer-events: none; padding: 5px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(11,58,103,0.78)">Après</span>
+            <span style="position: absolute; left: 14px; top: 14px; pointer-events: none; padding: 5px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(7,25,43,0.62)" data-i18n="ba.before">Avant</span>
+            <span style="position: absolute; right: 14px; top: 14px; pointer-events: none; padding: 5px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(11,58,103,0.78)" data-i18n="ba.after">Après</span>
             <div data-ba-line="" style="position: absolute; top: 0; bottom: 0; left: var(--p); width: 2px; margin-left: -1px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(7,25,43,0.18); pointer-events: none"></div>
-            <button data-ba-handle="" type="button" role="slider" tabindex="0" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="position: absolute; top: 50%; left: var(--p); transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 999px; border: 1px solid rgba(7,25,43,0.12); background: #FFFFFF; box-shadow: 0 10px 30px rgba(7,25,43,0.24); cursor: ew-resize; touch-action: none; display: flex; align-items: center; justify-content: center; gap: 4px; color: #0B3A67">
+            <button data-ba-handle="" type="button" role="slider" tabindex="0" data-i18n-al="ba.compare" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="position: absolute; top: 50%; left: var(--p); transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 999px; border: 1px solid rgba(7,25,43,0.12); background: #FFFFFF; box-shadow: 0 10px 30px rgba(7,25,43,0.24); cursor: ew-resize; touch-action: none; display: flex; align-items: center; justify-content: center; gap: 4px; color: #0B3A67">
               <svg width="8" height="14" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 2 1 8l6 6"></path></svg>
               <svg width="8" height="14" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 2 6 6-6 6"></path></svg>
             </button>
@@ -647,10 +668,10 @@
           <div data-ba="" style="--p: 50%; width: 100%; position: relative; flex: 1; min-height: 140px; overflow: hidden; background: #E9EEF3">
             <div style="position: absolute; inset: 0"><img data-cms="src:project3.beforeImage" src="assets/libellule-avant-w.webp" alt="Poupe de la Libellule avant rénovation, antifouling usé et bande de flottaison corrodée" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block"></div>
             <div data-ba-after="" style="position: absolute; inset: 0; clip-path: inset(0 0 0 var(--p))"><img data-cms="src:project3.afterImage" src="assets/libellule-apres-w.webp" alt="Poupe de la Libellule après rénovation, coque bleue et liseré rouge remis à neuf" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block"></div>
-            <span style="position: absolute; left: 14px; top: 14px; pointer-events: none; padding: 5px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(7,25,43,0.62)">Avant</span>
-            <span style="position: absolute; right: 14px; top: 14px; pointer-events: none; padding: 5px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(11,58,103,0.78)">Après</span>
+            <span style="position: absolute; left: 14px; top: 14px; pointer-events: none; padding: 5px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(7,25,43,0.62)" data-i18n="ba.before">Avant</span>
+            <span style="position: absolute; right: 14px; top: 14px; pointer-events: none; padding: 5px 10px; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #FFFFFF; background: rgba(11,58,103,0.78)" data-i18n="ba.after">Après</span>
             <div data-ba-line="" style="position: absolute; top: 0; bottom: 0; left: var(--p); width: 2px; margin-left: -1px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(7,25,43,0.18); pointer-events: none"></div>
-            <button data-ba-handle="" type="button" role="slider" tabindex="0" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="position: absolute; top: 50%; left: var(--p); transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 999px; border: 1px solid rgba(7,25,43,0.12); background: #FFFFFF; box-shadow: 0 10px 30px rgba(7,25,43,0.24); cursor: ew-resize; touch-action: none; display: flex; align-items: center; justify-content: center; gap: 4px; color: #0B3A67">
+            <button data-ba-handle="" type="button" role="slider" tabindex="0" data-i18n-al="ba.compare" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="position: absolute; top: 50%; left: var(--p); transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 999px; border: 1px solid rgba(7,25,43,0.12); background: #FFFFFF; box-shadow: 0 10px 30px rgba(7,25,43,0.24); cursor: ew-resize; touch-action: none; display: flex; align-items: center; justify-content: center; gap: 4px; color: #0B3A67">
               <svg width="8" height="14" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 2 1 8l6 6"></path></svg>
               <svg width="8" height="14" viewBox="0 0 9 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 2 6 6-6 6"></path></svg>
             </button>
@@ -897,98 +918,98 @@
       <h2 data-cms="text:devis.title" style="margin: 0 0 14px; font-size: 36px">Quelques photos suffisent pour commencer</h2>
       <p data-cms="text:devis.intro" style="font-size: 16px; line-height: 1.6; margin: 0 0 24px; max-width: 480px; color: color-mix(in srgb, var(--color-text) 78%, transparent)">Indiquez le type d'embarcation, l'état actuel et votre échéance. Un chef de projet revient vers vous sous 72 heures avec un chiffrage détaillé, sans engagement.</p>
       <div id="contact" style="display: flex; align-items: center; gap: 12px">
-        <a href="tel:+33663684147" data-cms="tel:contact.phone" aria-label="Téléphone" title="Téléphone" data-pill style="flex: none; width: 46px; height: 46px; border-radius: 999px; background: var(--color-accent); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"></path></svg></a>
-        <a href="mailto:contact@eclatdesflots.fr" data-cms="mailto:contact.email" aria-label="E-mail" title="E-mail" data-pill style="flex: none; width: 46px; height: 46px; border-radius: 999px; background: var(--color-accent); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 9.1 8-4.9V6.5l-8 4.9-8-4.9v1.7l8 4.9z"></path></svg></a>
+        <a href="tel:+33663684147" data-cms="tel:contact.phone" data-i18n-al="contact.phone" data-i18n-title="contact.phone" aria-label="Téléphone" title="Téléphone" data-pill style="flex: none; width: 46px; height: 46px; border-radius: 999px; background: var(--color-accent); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.2 2.2z"></path></svg></a>
+        <a href="mailto:contact@eclatdesflots.fr" data-cms="mailto:contact.email" data-i18n-al="contact.email" data-i18n-title="contact.email" aria-label="E-mail" title="E-mail" data-pill style="flex: none; width: 46px; height: 46px; border-radius: 999px; background: var(--color-accent); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 9.1 8-4.9V6.5l-8 4.9-8-4.9v1.7l8 4.9z"></path></svg></a>
         <a href="https://www.linkedin.com/in/rachel-prudent-651209226?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" data-cms="href:contact.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" data-pill style="flex: none; width: 46px; height: 46px; border-radius: 999px; background: var(--color-accent); display: flex; align-items: center; justify-content: center"><svg width="19" height="19" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.9 9.9h4.16V21H2.9V9.9zm6.8 0h3.98v1.52h.06c.55-1.01 1.9-2.08 3.92-2.08 4.19 0 4.96 2.6 4.96 5.98V21h-4.15v-5.42c0-1.29-.03-2.96-1.85-2.96-1.86 0-2.14 1.4-2.14 2.86V21H9.7V9.9z"></path></svg></a>
       </div>
     </div>
     <form id="devis-form" data-reveal="" novalidate style="display: flex; flex-direction: column; gap: 16px; padding: 36px; border: 1px solid var(--color-divider)">
       <div aria-hidden="true" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0"><label>Ne pas remplir<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px">
-        <div class="field"><label for="f-nom">Nom</label>
+        <div class="field"><label for="f-nom" data-i18n="form.name.label">Nom</label>
           <div class="field-wrap">
             <svg class="field-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
-            <input id="f-nom" name="name" autocomplete="name" required maxlength="200" aria-describedby="err-nom" class="input has-ic" type="text" placeholder="Votre nom" style="background: #FFFFFF; min-height: 44px">
+            <input id="f-nom" name="name" autocomplete="name" required maxlength="200" aria-describedby="err-nom" class="input has-ic" type="text" data-i18n-ph="form.name.ph" placeholder="Votre nom" style="background: #FFFFFF; min-height: 44px">
           </div>
           <span class="field-err" id="err-nom" role="alert"></span>
         </div>
-        <div class="field"><label for="f-tel">Téléphone / WhatsApp</label>
+        <div class="field"><label for="f-tel" data-i18n="form.tel.label">Téléphone / WhatsApp</label>
           <div class="tel-field">
             <div class="tel-combo">
-              <button type="button" id="tel-country-btn" class="tel-country" aria-haspopup="listbox" aria-expanded="false" aria-label="Indicatif pays (France par défaut)">
+              <button type="button" id="tel-country-btn" class="tel-country" aria-haspopup="listbox" aria-expanded="false" data-i18n-al="form.tel.country" aria-label="Indicatif pays (France par défaut)">
                 <span class="tel-flag" id="tel-flag">🇫🇷</span>
                 <span class="tel-dial" id="tel-dial">+33</span>
                 <svg class="tel-chev" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
               </button>
               <input id="f-tel" name="tel" autocomplete="tel-national" inputmode="tel" required maxlength="30" aria-describedby="err-tel" class="tel-number" type="tel" placeholder="6 63 68 41 47" style="background: transparent">
             </div>
-            <div class="tel-dropdown" id="tel-dropdown" role="listbox" aria-label="Choisir un pays">
-              <div class="tel-search-wrap"><input id="tel-search" type="text" class="tel-search" placeholder="Rechercher un pays ou un indicatif…" autocomplete="off" aria-label="Rechercher un pays"></div>
+            <div class="tel-dropdown" id="tel-dropdown" role="listbox" data-i18n-al="form.tel.choose" aria-label="Choisir un pays">
+              <div class="tel-search-wrap"><input id="tel-search" type="text" class="tel-search" data-i18n-ph="form.tel.searchPh" placeholder="Rechercher un pays ou un indicatif…" autocomplete="off" data-i18n-al="form.tel.searchAl" aria-label="Rechercher un pays"></div>
               <ul class="tel-list" id="tel-list"></ul>
             </div>
           </div>
           <span class="field-err" id="err-tel" role="alert"></span>
         </div>
       </div>
-      <div class="field"><label for="f-email">E-mail</label>
+      <div class="field"><label for="f-email" data-i18n="form.email.label">E-mail</label>
         <div class="field-wrap">
           <svg class="field-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
-          <input id="f-email" name="email" autocomplete="email" inputmode="email" required maxlength="200" aria-describedby="err-email" class="input has-ic" type="email" placeholder="vous@exemple.fr" style="background: #FFFFFF; min-height: 44px">
+          <input id="f-email" name="email" autocomplete="email" inputmode="email" required maxlength="200" aria-describedby="err-email" class="input has-ic" type="email" data-i18n-ph="form.email.ph" placeholder="vous@exemple.fr" style="background: #FFFFFF; min-height: 44px">
         </div>
         <span class="field-err" id="err-email" role="alert"></span>
       </div>
-      <div class="field"><label for="f-type">Type d'embarcation</label>
+      <div class="field"><label for="f-type" data-i18n="form.type.label">Type d'embarcation</label>
         <div class="field-wrap">
           <svg class="field-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2.2"></circle><path d="M12 7.2V21"></path><path d="M4.5 12.5H3a9 9 0 0 0 18 0h-1.5"></path></svg>
           <select id="f-type" name="boat-type" required aria-describedby="err-type" class="input has-ic sel-boat" style="min-height: 44px">
-            <option value="" disabled selected>Sélectionnez un type…</option>
-            <option>Péniche</option>
-            <option>Bateau fluvial</option>
-            <option>Yacht fluvial</option>
-            <option>Yacht</option>
-            <option>Vedette</option>
-            <option>Bateau à passagers</option>
-            <option>Bateau de plaisance</option>
-            <option>Bateau de commerce</option>
-            <option>Bateau de service</option>
-            <option>Bateau de travail</option>
-            <option>Bateau de transport</option>
-            <option>Bateau restaurant</option>
-            <option>Bateau événementiel</option>
-            <option>Bateau-hôtel</option>
-            <option>Barge</option>
-            <option>Chaland</option>
-            <option>Remorqueur</option>
-            <option>Navette fluviale</option>
-            <option>Ferry</option>
-            <option>Bateau à moteur</option>
-            <option>Voilier</option>
-            <option>Catamaran</option>
-            <option>Autre</option>
+            <option value="" disabled selected data-i18n="form.type.placeholder">Sélectionnez un type…</option>
+            <option value="Péniche" data-i18n="boat.peniche">Péniche</option>
+            <option value="Bateau fluvial" data-i18n="boat.fluvial">Bateau fluvial</option>
+            <option value="Yacht fluvial" data-i18n="boat.yachtFluvial">Yacht fluvial</option>
+            <option value="Yacht" data-i18n="boat.yacht">Yacht</option>
+            <option value="Vedette" data-i18n="boat.vedette">Vedette</option>
+            <option value="Bateau à passagers" data-i18n="boat.passagers">Bateau à passagers</option>
+            <option value="Bateau de plaisance" data-i18n="boat.plaisance">Bateau de plaisance</option>
+            <option value="Bateau de commerce" data-i18n="boat.commerce">Bateau de commerce</option>
+            <option value="Bateau de service" data-i18n="boat.service">Bateau de service</option>
+            <option value="Bateau de travail" data-i18n="boat.travail">Bateau de travail</option>
+            <option value="Bateau de transport" data-i18n="boat.transport">Bateau de transport</option>
+            <option value="Bateau restaurant" data-i18n="boat.restaurant">Bateau restaurant</option>
+            <option value="Bateau événementiel" data-i18n="boat.evenementiel">Bateau événementiel</option>
+            <option value="Bateau-hôtel" data-i18n="boat.hotel">Bateau-hôtel</option>
+            <option value="Barge" data-i18n="boat.barge">Barge</option>
+            <option value="Chaland" data-i18n="boat.chaland">Chaland</option>
+            <option value="Remorqueur" data-i18n="boat.remorqueur">Remorqueur</option>
+            <option value="Navette fluviale" data-i18n="boat.navette">Navette fluviale</option>
+            <option value="Ferry" data-i18n="boat.ferry">Ferry</option>
+            <option value="Bateau à moteur" data-i18n="boat.moteur">Bateau à moteur</option>
+            <option value="Voilier" data-i18n="boat.voilier">Voilier</option>
+            <option value="Catamaran" data-i18n="boat.catamaran">Catamaran</option>
+            <option value="Autre" data-i18n="boat.autre">Autre</option>
           </select>
         </div>
         <span class="field-err" id="err-type" role="alert"></span>
       </div>
       <div class="field" id="f-other-wrap" style="display: none">
-        <label for="f-type-other">Précisez votre type d'embarcation</label>
+        <label for="f-type-other" data-i18n="form.typeOther.label">Précisez votre type d'embarcation</label>
         <div class="field-wrap">
           <svg class="field-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"></path><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>
-          <input id="f-type-other" name="boat-type-other" type="text" maxlength="200" aria-describedby="err-type-other" class="input has-ic" placeholder="Votre type d'embarcation" style="background: #FFFFFF; min-height: 44px">
+          <input id="f-type-other" name="boat-type-other" type="text" maxlength="200" aria-describedby="err-type-other" class="input has-ic" data-i18n-ph="form.typeOther.ph" placeholder="Votre type d'embarcation" style="background: #FFFFFF; min-height: 44px">
         </div>
         <span class="field-err" id="err-type-other" role="alert"></span>
       </div>
-      <div class="field"><label for="f-need">Besoin</label>
+      <div class="field"><label for="f-need" data-i18n="form.need.label">Besoin</label>
         <div class="field-wrap">
           <svg class="field-ic field-ic--top" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="7" x2="19" y2="7"></line><line x1="5" y1="12" x2="19" y2="12"></line><line x1="5" y1="17" x2="13" y2="17"></line></svg>
-          <textarea id="f-need" name="message" required maxlength="5000" aria-describedby="err-need" class="input has-ic" placeholder="État actuel, échéance souhaitée" style="background: #FFFFFF; min-height: 110px"></textarea>
+          <textarea id="f-need" name="message" required maxlength="5000" aria-describedby="err-need" class="input has-ic" data-i18n-ph="form.need.ph" placeholder="État actuel, échéance souhaitée" style="background: #FFFFFF; min-height: 110px"></textarea>
         </div>
         <span class="field-err" id="err-need" role="alert"></span>
       </div>
-      <div class="field"><label>Photos du bateau <span style="font-weight: 400; color: color-mix(in srgb, var(--color-text) 45%, transparent)">— facultatif</span></label>
-        <div id="ph-drop" class="ph-drop" role="button" tabindex="0" aria-label="Ajouter des photos de votre bateau">
+      <div class="field"><label><span data-i18n="form.photos.label">Photos du bateau</span> <span data-i18n="form.photos.optional" style="font-weight: 400; color: color-mix(in srgb, var(--color-text) 45%, transparent)">— facultatif</span></label>
+        <div id="ph-drop" class="ph-drop" role="button" tabindex="0" data-i18n-al="form.photos.al" aria-label="Ajouter des photos de votre bateau">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4"></path><path d="m7 9 5-5 5 5"></path><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"></path></svg>
-          <span class="ph-cta">+ Ajouter des photos</span>
-          <span class="ph-hint">JPG, PNG, WEBP ou HEIC · 8 Mo max par photo · 40 Mo au total</span>
+          <span class="ph-cta" data-i18n="form.photos.cta">+ Ajouter des photos</span>
+          <span class="ph-hint" data-i18n="form.photos.hint">JPG, PNG, WEBP ou HEIC · 8 Mo max par photo · 40 Mo au total</span>
         </div>
         <input id="ph-input" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" multiple hidden>
         <ul id="ph-list" class="ph-list" hidden></ul>
@@ -1040,21 +1061,21 @@
   </section>
 
   <div data-cal-overlay="" style="position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 40px; background: rgba(7,25,43,0.62); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 0; transition: opacity 260ms ease">
-    <div data-cal-dialog="" role="dialog" aria-modal="true" aria-label="Demander un rendez-vous" style="position: relative; width: min(440px, 100%); background: #072948; border-radius: 20px; padding: 42px 32px 34px; text-align: center; box-shadow: 0 40px 120px rgba(7,25,43,0.5), inset 0 0 0 1px rgba(255,255,255,0.06); transform: translateY(18px) scale(0.985); transition: transform 320ms cubic-bezier(0.22,1,0.36,1)">
+    <div data-cal-dialog="" role="dialog" aria-modal="true" data-i18n-al="rdv.dialog" aria-label="Demander un rendez-vous" style="position: relative; width: min(440px, 100%); background: #072948; border-radius: 20px; padding: 42px 32px 34px; text-align: center; box-shadow: 0 40px 120px rgba(7,25,43,0.5), inset 0 0 0 1px rgba(255,255,255,0.06); transform: translateY(18px) scale(0.985); transition: transform 320ms cubic-bezier(0.22,1,0.36,1)">
       <img src="assets/logo-footer.png" alt="L'Éclat des Flots" style="height: 40px; width: auto; display: block; margin: 0 auto 22px">
-      <h3 style="margin: 0 0 10px; font-size: 24px; color: #FFFFFF">Demander un rendez-vous</h3>
-      <p style="margin: 0 0 28px; font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.72)">Échangez directement avec Rachel pour discuter de votre projet.</p>
+      <h3 data-i18n="rdv.title" style="margin: 0 0 10px; font-size: 24px; color: #FFFFFF">Demander un rendez-vous</h3>
+      <p data-i18n="rdv.text" style="margin: 0 0 28px; font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.72)">Échangez directement avec Rachel pour discuter de votre projet.</p>
       <div style="display: flex; gap: 14px; justify-content: center">
-        <a data-cms="whatsapp:contact.phone" href="https://wa.me/33663684147" target="_blank" rel="noopener" class="rdv-choice" aria-label="Contacter Rachel sur WhatsApp">
+        <a data-cms="whatsapp:contact.phone" href="https://wa.me/33663684147" target="_blank" rel="noopener" class="rdv-choice" data-i18n-al="rdv.whatsapp" aria-label="Contacter Rachel sur WhatsApp">
           <svg viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.53 0-3.03-.42-4.34-1.2l-.31-.18-3.11.82.83-3.04-.2-.32a8.16 8.16 0 0 1-1.25-4.36c0-4.54 3.7-8.24 8.24-8.24zm-4.5 4.4c-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9s.82 2.2.94 2.35c.11.15 1.6 2.45 3.88 3.43.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.33-.54 1.52-1.07.19-.53.19-.98.13-1.07-.06-.09-.21-.15-.44-.26-.23-.11-1.33-.66-1.54-.73-.21-.08-.36-.11-.5.11-.15.22-.58.73-.71.88-.13.15-.26.17-.49.06-.23-.11-.96-.35-1.83-1.13-.68-.6-1.13-1.35-1.27-1.57-.13-.22-.01-.34.1-.45.1-.1.23-.26.34-.39.11-.13.15-.22.23-.37.08-.15.04-.28-.02-.39-.06-.11-.5-1.22-.69-1.67-.18-.44-.37-.38-.5-.39-.13-.01-.28-.01-.43-.01z"></path></svg>
           <span>WhatsApp</span>
         </a>
-        <a data-cms="mailto:contact.email" href="mailto:contact@eclatdesflots.fr" class="rdv-choice" aria-label="Envoyer un e-mail à Rachel">
+        <a data-cms="mailto:contact.email" href="mailto:contact@eclatdesflots.fr" class="rdv-choice" data-i18n-al="rdv.email" aria-label="Envoyer un e-mail à Rachel">
           <svg viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 9.1 8-4.9V6.5l-8 4.9-8-4.9v1.7l8 4.9z"></path></svg>
           <span>Email</span>
         </a>
       </div>
-      <button data-cal-close="" type="button" aria-label="Fermer" style="position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #FFFFFF; font-size: 18px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 200ms ease">×</button>
+      <button data-cal-close="" type="button" data-i18n-al="rdv.close" aria-label="Fermer" style="position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #FFFFFF; font-size: 18px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 200ms ease">×</button>
     </div>
   </div>
 
@@ -1062,22 +1083,22 @@
     <div data-footer-cols="" style="display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; align-items: start">
       <img src="assets/logo-footer.png" alt="L'Éclat des Flots" style="height: 46px; width: auto; display: block">
       <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px">
-        <span style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5)">Services</span>
-        <a href="#services" style="color: rgba(255,255,255,0.85)">Expertise</a>
-        <a href="#services" style="color: rgba(255,255,255,0.85)">Peinture</a>
-        <a href="#services" style="color: rgba(255,255,255,0.85)">Rénovation</a>
+        <span data-i18n="footer.col.services" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5)">Services</span>
+        <a href="#services" data-i18n="footer.services.expertise" style="color: rgba(255,255,255,0.85)">Expertise</a>
+        <a href="#services" data-i18n="footer.services.peinture" style="color: rgba(255,255,255,0.85)">Peinture</a>
+        <a href="#services" data-i18n="footer.services.renovation" style="color: rgba(255,255,255,0.85)">Rénovation</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px">
-        <span style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5)">Embarcations</span>
-        <a href="#embarcations" style="color: rgba(255,255,255,0.85)">Péniches</a>
-        <a href="#embarcations" style="color: rgba(255,255,255,0.85)">Bateaux à passagers</a>
-        <a href="#embarcations" style="color: rgba(255,255,255,0.85)">Pontons</a>
+        <span data-i18n="footer.col.embarcations" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5)">Embarcations</span>
+        <a href="#embarcations" data-i18n="footer.emb.peniches" style="color: rgba(255,255,255,0.85)">Péniches</a>
+        <a href="#embarcations" data-i18n="footer.emb.passagers" style="color: rgba(255,255,255,0.85)">Bateaux à passagers</a>
+        <a href="#embarcations" data-i18n="footer.emb.pontons" style="color: rgba(255,255,255,0.85)">Pontons</a>
       </div>
       <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px">
-        <span style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5)">Contact</span>
+        <span data-i18n="footer.col.contact" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.5)">Contact</span>
         <div style="display: flex; align-items: center; gap: 6px; margin-left: -6px">
-        <a data-cms="whatsapp:contact.phone" href="https://wa.me/33663684147" target="_blank" rel="noopener" aria-label="Contacter L'Éclat des Flots sur WhatsApp" title="Contacter L'Éclat des Flots sur WhatsApp" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.53 0-3.03-.42-4.34-1.2l-.31-.18-3.11.82.83-3.04-.2-.32a8.16 8.16 0 0 1-1.25-4.36c0-4.54 3.7-8.24 8.24-8.24zm-4.5 4.4c-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9s.82 2.2.94 2.35c.11.15 1.6 2.45 3.88 3.43.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.33-.54 1.52-1.07.19-.53.19-.98.13-1.07-.06-.09-.21-.15-.44-.26-.23-.11-1.33-.66-1.54-.73-.21-.08-.36-.11-.5.11-.15.22-.58.73-.71.88-.13.15-.26.17-.49.06-.23-.11-.96-.35-1.83-1.13-.68-.6-1.13-1.35-1.27-1.57-.13-.22-.01-.34.1-.45.1-.1.23-.26.34-.39.11-.13.15-.22.23-.37.08-.15.04-.28-.02-.39-.06-.11-.5-1.22-.69-1.67-.18-.44-.37-.38-.5-.39-.13-.01-.28-.01-.43-.01z"></path></svg></a>
-        <a data-cms="mailto:contact.email" href="mailto:contact@eclatdesflots.fr" aria-label="E-mail" title="E-mail" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 9.1 8-4.9V6.5l-8 4.9-8-4.9v1.7l8 4.9z"></path></svg></a>
+        <a data-cms="whatsapp:contact.phone" href="https://wa.me/33663684147" target="_blank" rel="noopener" data-i18n-al="footer.whatsapp" data-i18n-title="footer.whatsapp" aria-label="Contacter L'Éclat des Flots sur WhatsApp" title="Contacter L'Éclat des Flots sur WhatsApp" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.26.86 5.82 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.53 0-3.03-.42-4.34-1.2l-.31-.18-3.11.82.83-3.04-.2-.32a8.16 8.16 0 0 1-1.25-4.36c0-4.54 3.7-8.24 8.24-8.24zm-4.5 4.4c-.15 0-.4.06-.61.28-.21.22-.8.78-.8 1.9s.82 2.2.94 2.35c.11.15 1.6 2.45 3.88 3.43.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.33-.54 1.52-1.07.19-.53.19-.98.13-1.07-.06-.09-.21-.15-.44-.26-.23-.11-1.33-.66-1.54-.73-.21-.08-.36-.11-.5.11-.15.22-.58.73-.71.88-.13.15-.26.17-.49.06-.23-.11-.96-.35-1.83-1.13-.68-.6-1.13-1.35-1.27-1.57-.13-.22-.01-.34.1-.45.1-.1.23-.26.34-.39.11-.13.15-.22.23-.37.08-.15.04-.28-.02-.39-.06-.11-.5-1.22-.69-1.67-.18-.44-.37-.38-.5-.39-.13-.01-.28-.01-.43-.01z"></path></svg></a>
+        <a data-cms="mailto:contact.email" href="mailto:contact@eclatdesflots.fr" data-i18n-al="footer.email" data-i18n-title="footer.email" aria-label="E-mail" title="E-mail" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm8 9.1 8-4.9V6.5l-8 4.9-8-4.9v1.7l8 4.9z"></path></svg></a>
         <a data-cms="href:contact.linkedin" href="https://www.linkedin.com/in/rachel-prudent-651209226?utm_source=share_via&amp;utm_content=profile&amp;utm_medium=member_ios" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px"><svg width="17" height="17" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM2.9 9.9h4.16V21H2.9V9.9zm6.8 0h3.98v1.52h.06c.55-1.01 1.9-2.08 3.92-2.08 4.19 0 4.96 2.6 4.96 5.98V21h-4.15v-5.42c0-1.29-.03-2.96-1.85-2.96-1.86 0-2.14 1.4-2.14 2.86V21H9.7V9.9z"></path></svg></a>
         </div>
       </div>
@@ -1096,6 +1117,15 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440},&quot;videoSrc&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;scrollReveal&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   componentDidMount() {
+    // Bilingue : appliquer la traduction anglaise (ou câbler le sélecteur de
+    // langue en français) APRÈS le montage React, pour ne pas entrer en conflit
+    // avec la réconciliation du runtime design-canvas.
+    try {
+      if (window.__EDF) {
+        if (typeof window.__EDF.applyI18n === 'function') window.__EDF.applyI18n();
+        else if (typeof window.__EDF.wireLangSwitch === 'function') window.__EDF.wireLangSwitch();
+      }
+    } catch (e) {}
     document.querySelectorAll('[data-ba]').forEach((el) => {
       const h = el.querySelector('[data-ba-handle]');
       if (!h) return;
@@ -1197,6 +1227,42 @@ class Component extends DCLogic {
       const errEl = document.getElementById('ph-err');
       const statusEl = document.getElementById('form-status');
       if (!form || !drop || !input || !list) return;
+      // — i18n : messages dynamiques du formulaire — français par défaut ;
+      // la version anglaise est fournie par i18n.js via window.__EDF.t(). Le
+      // repli FR ci-dessous garantit qu'aucun message ne disparaît si i18n.js
+      // n'est pas chargé.
+      const FR_FALLBACK = {
+        photoFormat: 'Formats acceptés : JPG, PNG, WEBP ou HEIC.',
+        photoTooBig: '« {name} » dépasse 8 Mo et n’a pas été ajouté.',
+        photoTotal: 'Limite totale de 40 Mo atteinte — cette photo n’a pas été ajoutée.',
+        errName: 'Le nom est obligatoire.',
+        errEmailReq: 'L’e-mail est obligatoire.',
+        errEmailInvalid: 'E-mail invalide.',
+        errType: 'Le type d’embarcation est obligatoire.',
+        errMessage: 'Le message est obligatoire.',
+        errPhoneReq: 'Le numéro WhatsApp est obligatoire.',
+        errPhoneInvalid: 'Veuillez saisir un numéro WhatsApp valide.',
+        errTypeOther: 'Veuillez préciser votre type d’embarcation.',
+        wait: 'Merci de patienter un instant avant l’envoi.',
+        sending: 'Envoi en cours',
+        sendingLong: 'Envoi de votre demande…',
+        sentTitle: 'Demande envoyée',
+        sentText: 'Votre demande a bien été transmise.',
+        redirect: 'Vous allez être redirigé vers la page d’accueil…',
+        partialText: 'Certaines photos n’ont cependant pas pu être transmises. Vous pouvez nous les envoyer par WhatsApp ou e-mail.',
+        backToForm: 'Revenir au formulaire',
+        failTitle: 'Échec de l’envoi',
+        failNetwork: 'Problème de connexion. Vos informations sont conservées.',
+        failGeneric: 'Votre demande n’a pas pu être envoyée.',
+        retry: 'Réessayer',
+        noCountry: 'Aucun pays trouvé.'
+      };
+      const T = (k) => {
+        try { if (window.__EDF && typeof window.__EDF.t === 'function') { const v = window.__EDF.t(k); if (v) return v; } } catch (e) {}
+        return FR_FALLBACK[k] || '';
+      };
+      const I18N_LOCALE = () => { try { return (window.__EDF && window.__EDF.locale) || 'fr'; } catch (e) { return 'fr'; } };
+      const HOME_URL = () => { try { return (window.__EDF && window.__EDF.home) || '/'; } catch (e) { return '/'; } };
       const MAX_FILE = 8 * 1024 * 1024;    // 8 Mo / photo
       const MAX_TOTAL = 40 * 1024 * 1024;  // 40 Mo au total
       const OK = /^image\/(jpeg|png|webp|heic|heif)$/i;
@@ -1231,10 +1297,10 @@ class Component extends DCLogic {
         let msg = '';
         Array.from(fileList || []).forEach((f) => {
           const typeOk = OK.test(f.type) || (!f.type && OK_EXT.test(f.name));
-          if (!typeOk) { msg = 'Formats acceptés : JPG, PNG, WEBP ou HEIC.'; return; }
-          if (f.size > MAX_FILE) { msg = '« ' + f.name + ' » dépasse 8 Mo et n\'a pas été ajouté.'; return; }
+          if (!typeOk) { msg = T('photoFormat'); return; }
+          if (f.size > MAX_FILE) { msg = T('photoTooBig').replace('{name}', f.name); return; }
           if (files.some((x) => x.name === f.name && x.size === f.size)) return;
-          if (total() + f.size > MAX_TOTAL) { msg = 'Limite totale de 40 Mo atteinte — cette photo n\'a pas été ajoutée.'; return; }
+          if (total() + f.size > MAX_TOTAL) { msg = T('photoTotal'); return; }
           files.push(f);
         });
         if (msg) showErr(msg);
@@ -1250,10 +1316,10 @@ class Component extends DCLogic {
       // — validation des champs texte —
       const q = (sel) => form.querySelector(sel);
       const F = {
-        name:  { el: q('#f-nom'),  err: q('#err-nom'),   test: (v) => v.trim() ? '' : 'Le nom est obligatoire.' },
-        email: { el: q('#f-email'),err: q('#err-email'), test: (v) => !v.trim() ? "L'e-mail est obligatoire." : (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'E-mail invalide.') },
-        boatType: { el: q('#f-type'), err: q('#err-type'), test: (v) => v.trim() ? '' : "Le type d'embarcation est obligatoire." },
-        message: { el: q('#f-need'), err: q('#err-need'), test: (v) => v.trim() ? '' : 'Le message est obligatoire.' },
+        name:  { el: q('#f-nom'),  err: q('#err-nom'),   test: (v) => v.trim() ? '' : T('errName') },
+        email: { el: q('#f-email'),err: q('#err-email'), test: (v) => !v.trim() ? T('errEmailReq') : (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : T('errEmailInvalid')) },
+        boatType: { el: q('#f-type'), err: q('#err-type'), test: (v) => v.trim() ? '' : T('errType') },
+        message: { el: q('#f-need'), err: q('#err-need'), test: (v) => v.trim() ? '' : T('errMessage') },
       };
       const KEYS = ['name', 'email', 'boatType', 'message'];
       function setErr(f, m) {
@@ -1294,20 +1360,20 @@ class Component extends DCLogic {
       }
       function buildCountries(lib) {
         if (telCountries.length) return telCountries;
-        let dn = null; try { dn = new Intl.DisplayNames(['fr'], { type: 'region' }); } catch (e) {}
+        let dn = null; try { dn = new Intl.DisplayNames([I18N_LOCALE()], { type: 'region' }); } catch (e) {}
         telCountries = lib.getCountries().map((iso) => {
           let name = iso; try { if (dn) name = dn.of(iso) || iso; } catch (e) {}
           let dial = ''; try { dial = lib.getCountryCallingCode(iso); } catch (e) {}
           return { iso: iso, name: name, dial: dial, flag: isoFlag(iso) };
         }).filter((c) => c.dial);
-        telCountries.sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+        telCountries.sort((a, b) => a.name.localeCompare(b.name, I18N_LOCALE()));
         return telCountries;
       }
       function renderTelList(filter) {
         const f = (filter || '').trim().toLowerCase();
         const items = telCountries.filter((c) => !f || c.name.toLowerCase().indexOf(f) >= 0 || ('+' + c.dial).indexOf(f) >= 0 || c.dial.indexOf(f) >= 0 || c.iso.toLowerCase() === f);
         telList.innerHTML = '';
-        if (!items.length) { const li = document.createElement('li'); li.className = 'tel-empty'; li.textContent = 'Aucun pays trouvé.'; telList.appendChild(li); return; }
+        if (!items.length) { const li = document.createElement('li'); li.className = 'tel-empty'; li.textContent = T('noCountry'); telList.appendChild(li); return; }
         items.slice(0, 300).forEach((c) => {
           const li = document.createElement('li'); li.setAttribute('role', 'option');
           if (c.iso === selectedIso) li.className = 'active';
@@ -1340,14 +1406,14 @@ class Component extends DCLogic {
       }
       function validatePhone() {
         const raw = telInput.value.trim();
-        if (!raw) { setTelErr('Le numéro WhatsApp est obligatoire.'); return { ok: false }; }
+        if (!raw) { setTelErr(T('errPhoneReq')); return { ok: false }; }
         const lib = window.__phone;
         if (!lib) { setTelErr(''); return { ok: true, deferred: true }; } // server will validate
         try {
           const pn = lib.parsePhoneNumber(raw, selectedIso);
-          if (!pn || !pn.isValid()) { setTelErr('Veuillez saisir un numéro WhatsApp valide.'); return { ok: false }; }
+          if (!pn || !pn.isValid()) { setTelErr(T('errPhoneInvalid')); return { ok: false }; }
           setTelErr(''); return { ok: true };
-        } catch (e) { setTelErr('Veuillez saisir un numéro WhatsApp valide.'); return { ok: false }; }
+        } catch (e) { setTelErr(T('errPhoneInvalid')); return { ok: false }; }
       }
       if (telBtn) {
         telBtn.addEventListener('click', (e) => { e.preventDefault(); telDropdown.classList.contains('open') ? closeTel() : openTel(); });
@@ -1384,7 +1450,7 @@ class Component extends DCLogic {
           if (boatSelect.classList.contains('invalid')) setErr(F.boatType, F.boatType.test(boatSelect.value));
         });
       }
-      if (boatOther) boatOther.addEventListener('input', () => { if (boatOther.classList.contains('invalid')) setBoatOtherErr(boatOther.value.trim() ? '' : 'Veuillez préciser votre type d’embarcation.'); });
+      if (boatOther) boatOther.addEventListener('input', () => { if (boatOther.classList.contains('invalid')) setBoatOtherErr(boatOther.value.trim() ? '' : T('errTypeOther')); });
 
       // — chargement paresseux du client Blob (uniquement si des photos sont ajoutées) —
       let blobLoading = null;
@@ -1481,17 +1547,17 @@ class Component extends DCLogic {
         const ph = validatePhone();
         if (!ph.ok && !firstInvalid) firstInvalid = telInput;
         if (boatSelect && boatSelect.value === 'Autre' && (!boatOther || !boatOther.value.trim())) {
-          setBoatOtherErr('Veuillez préciser votre type d’embarcation.');
+          setBoatOtherErr(T('errTypeOther'));
           if (!firstInvalid) firstInvalid = boatOther;
         }
         if (firstInvalid) { status('', ''); firstInvalid.focus(); submitting = false; return; }
-        if (Date.now() - renderedAt < 1500) { status('Merci de patienter un instant avant l’envoi.', 'err'); submitting = false; return; }
+        if (Date.now() - renderedAt < 1500) { status(T('wait'), 'err'); submitting = false; return; }
 
         // — SUBMITTING — TOUTE la carte devient l'écran d'envoi ; le vrai envoi tourne en parallèle
         // (on ne touche PAS #form-status ici pour ne pas modifier la hauteur de la carte)
         const ov = ensureOverlay();
         const top = ov.querySelector('.devis-ov-top'), bottom = ov.querySelector('.devis-ov-bottom');
-        top.textContent = 'Envoi en cours'; bottom.innerHTML = ''; ov.querySelector('.devis-ov-big').innerHTML = '';
+        top.textContent = T('sending'); bottom.innerHTML = ''; ov.querySelector('.devis-ov-big').innerHTML = '';
         showOverlay(ov);
         let result = null, done = false;
         const work = doSubmit().then((r) => { result = r; }, () => { result = { status: 'error' }; }).then(() => { done = true; });
@@ -1503,7 +1569,7 @@ class Component extends DCLogic {
         }
 
         // — WAITING — décompte fini mais backend encore en cours
-        if (!done) { top.textContent = 'Envoi de votre demande…'; await setBig(ov, '<span class="devis-ov-spin"></span>'); }
+        if (!done) { top.textContent = T('sendingLong'); await setBig(ov, '<span class="devis-ov-spin"></span>'); }
         await work;
         const res = result || { status: 'error' };
 
@@ -1511,13 +1577,13 @@ class Component extends DCLogic {
         if (res.status === 'success') {
           top.textContent = '';
           await setBig(ov, OV_ICONS.ok);
-          bottom.innerHTML = '<div class="devis-ov-title">Demande envoyée</div>'
-            + '<p class="devis-ov-text">Votre demande a bien été transmise.</p>'
-            + '<p class="devis-ov-text devis-ov-muted">Vous allez être redirigé vers la page d’accueil…</p>';
+          bottom.innerHTML = '<div class="devis-ov-title">' + T('sentTitle') + '</div>'
+            + '<p class="devis-ov-text">' + T('sentText') + '</p>'
+            + '<p class="devis-ov-text devis-ov-muted">' + T('redirect') + '</p>';
           await wait(1800);
           try { history.scrollRestoration = 'manual'; } catch (_) {}
           try { window.scrollTo(0, 0); } catch (_) {}
-          window.location.assign('/'); // vrai reload, hero tout en haut ; jamais /Accueil.dc.html
+          window.location.assign(HOME_URL()); // vrai reload, hero tout en haut ; reste dans la langue courante (/ ou /en)
           return;
         }
 
@@ -1525,10 +1591,10 @@ class Component extends DCLogic {
         if (res.status === 'partial') {
           top.textContent = '';
           await setBig(ov, OV_ICONS.warn);
-          bottom.innerHTML = '<div class="devis-ov-title">Demande envoyée</div>'
-            + '<p class="devis-ov-text">Certaines photos n’ont cependant pas pu être transmises. Vous pouvez nous les envoyer par WhatsApp ou e-mail.</p>';
+          bottom.innerHTML = '<div class="devis-ov-title">' + T('sentTitle') + '</div>'
+            + '<p class="devis-ov-text">' + T('partialText') + '</p>';
           const back = document.createElement('button');
-          back.type = 'button'; back.className = 'btn btn-secondary devis-ov-btn'; back.textContent = 'Revenir au formulaire';
+          back.type = 'button'; back.className = 'btn btn-secondary devis-ov-btn'; back.textContent = T('backToForm');
           back.addEventListener('click', () => { hideOverlay(ov); submitting = false; });
           bottom.appendChild(back);
           return;
@@ -1542,10 +1608,10 @@ class Component extends DCLogic {
         }
         top.textContent = '';
         await setBig(ov, OV_ICONS.err);
-        bottom.innerHTML = '<div class="devis-ov-title">Échec de l’envoi</div>'
-          + '<p class="devis-ov-text">' + (res.network ? 'Problème de connexion. Vos informations sont conservées.' : 'Votre demande n’a pas pu être envoyée.') + '</p>';
+        bottom.innerHTML = '<div class="devis-ov-title">' + T('failTitle') + '</div>'
+          + '<p class="devis-ov-text">' + (res.network ? T('failNetwork') : T('failGeneric')) + '</p>';
         const retry = document.createElement('button');
-        retry.type = 'button'; retry.className = 'btn btn-primary devis-ov-btn'; retry.textContent = 'Réessayer';
+        retry.type = 'button'; retry.className = 'btn btn-primary devis-ov-btn'; retry.textContent = T('retry');
         retry.addEventListener('click', () => { hideOverlay(ov); submitting = false; }); // formulaire restauré, valeurs intactes
         bottom.appendChild(retry);
       });

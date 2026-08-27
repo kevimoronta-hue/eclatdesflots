@@ -3,12 +3,16 @@
   "framework": null,
   "cleanUrls": false,
   "redirects": [
-    { "source": "/Accueil.dc.html", "destination": "/", "permanent": true }
+    { "source": "/Accueil.dc.html", "destination": "/", "permanent": true },
+    { "source": "/en/", "destination": "/en", "permanent": true }
   ],
   "rewrites": [
     { "source": "/admin", "destination": "/admin/index.html" },
     { "source": "/mentions-legales", "destination": "/mentions-legales.html" },
-    { "source": "/politique-de-confidentialite", "destination": "/politique-de-confidentialite.html" }
+    { "source": "/politique-de-confidentialite", "destination": "/politique-de-confidentialite.html" },
+    { "source": "/en", "destination": "/index.html" },
+    { "source": "/en/legal-notice", "destination": "/en/legal-notice.html" },
+    { "source": "/en/privacy-policy", "destination": "/en/privacy-policy.html" }
   ],
   "functions": {
     "api/**/*.js": { "maxDuration": 15 }

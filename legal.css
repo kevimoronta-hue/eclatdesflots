@@ -130,3 +130,15 @@ a { color: var(--color-accent); }
   .legal-back { padding: 10px 16px; font-size: 14px; }
   .legal-main h1 { font-size: 29px; }
 }
+
+/* — Sélecteur de langue FR / EN (pages légales) — */
+.legal-nav-right { display: inline-flex; align-items: center; gap: 12px; }
+.lang-switch { display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(11,58,103,0.06); border: 1px solid rgba(11,58,103,0.12); flex: none; }
+.lang-switch a { display: inline-flex; align-items: center; justify-content: center; min-width: 30px; padding: 6px 9px; font-size: 12px; font-weight: 600; letter-spacing: 0.03em; line-height: 1; color: color-mix(in srgb, var(--color-text) 58%, transparent); text-decoration: none; border-radius: 999px; transition: color 200ms ease, background 200ms ease, box-shadow 200ms ease; }
+.lang-switch a:hover { color: var(--color-accent); }
+.lang-switch a.is-active { color: var(--color-accent); background: #FFFFFF; box-shadow: 0 1px 3px rgba(7,41,72,0.12), inset 0 0 0 1px rgba(11,58,103,0.06); }
+.lang-switch a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+@media (max-width: 560px) {
+  .legal-nav-right { gap: 8px; }
+  .lang-switch a { min-width: 28px; padding: 6px 8px; font-size: 11px; }
+}

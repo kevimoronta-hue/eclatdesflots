@@ -60,6 +60,9 @@
   function hydrate() {
     // Same-origin only; ignore when opened via file:// (no backend available).
     if (location.protocol === 'file:') return;
+    // English is served by the static i18n dictionary (i18n.js). Skipping the
+    // French CMS here prevents it from overwriting the translated copy.
+    if (window.__EDF_SKIP_CMS) return;
     fetch('/api/content', { headers: { Accept: 'application/json' }, credentials: 'omit' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (data) { if (data && data.content) apply(data.content); })
