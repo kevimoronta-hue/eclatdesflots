@@ -52,10 +52,10 @@
   //          French stays in the DOM). `ui` : keyed by data-i18n attributes.
   var EN = {
     head: {
-      title: "L'Éclat des Flots — Boat renovation & maintenance for inland waterway vessels",
-      description: "Survey, surface treatment and complete renovation of barges, passenger boats, pontoons and river vessels. In dry dock or afloat — detailed quote within 72 h.",
-      ogDescription: "Survey, surface treatment and complete renovation of barges, passenger boats, pontoons and river vessels. In dry dock or afloat.",
-      twitterDescription: "Renovation and maintenance of inland waterway vessels. In dry dock or afloat — detailed quote within 72 h.",
+      title: "L'Éclat des Flots | Boat and Barge Renovation",
+      description: "L'Éclat des Flots renovates, maintains and repairs boats, barges and inland waterway vessels: hull, paint, surface treatment and full refits, in dry dock or afloat.",
+      ogDescription: "L'Éclat des Flots renovates, maintains and repairs boats, barges and inland waterway vessels: hull, paint, surface treatment and full refits, in dry dock or afloat.",
+      twitterDescription: "L'Éclat des Flots renovates, maintains and repairs boats and barges: hull, paint and surface treatment, in dry dock or afloat.",
       url: "https://eclatdesflots.fr/en",
       locale: "en_GB"
     },
@@ -64,7 +64,7 @@
       'cta.rdvLabel': 'Book a meeting',
       'cta.title': "Send us a few photos. We'll tell you what really needs doing.",
       'cta.subtitle': 'A project manager replies within 24 business hours.',
-      'hero.title': 'French craftsmanship at the service of your vessel.',
+      'hero.title': 'Boat and barge renovation and maintenance, French craftsmanship.',
       'hero.subtitle': 'Expertise, surface treatment and complete renovation for barges, floating homes, passenger boats, commercial vessels and pontoons. In dry dock or afloat.',
       'hero.ctaSecondary': 'See our work',
       'clients.heading': 'Trusted by',

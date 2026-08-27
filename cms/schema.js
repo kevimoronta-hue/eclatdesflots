@@ -52,7 +52,7 @@ export const SECTIONS = [
   },
   {
     id: 'accueil', label: 'Accueil — Héro', fields: [
-      { key: 'hero.title', label: 'Titre principal', type: 'text', binding: 'text', default: 'Un savoir-faire français au service de votre embarcation.' },
+      { key: 'hero.title', label: 'Titre principal', type: 'text', binding: 'text', default: 'Rénovation et entretien de bateaux et péniches, un savoir-faire français.' },
       { key: 'hero.subtitle', label: 'Sous-titre', type: 'multiline', binding: 'text', default: "Expertise, traitement de surface et rénovation complète péniches, logements flottants, bateaux à passagers, navires de commerce et pontons. En cale sèche comme à flot." },
       { key: 'hero.ctaSecondary', label: 'Bouton secondaire', type: 'text', binding: 'text', default: 'Voir nos réalisations' },
       { key: 'hero.image', label: 'Image de fond du héro', type: 'image', binding: 'src', default: 'assets/hero-cale-seche.webp' },

@@ -10,6 +10,44 @@ import { DEFAULTS, validateField, isValidKey } from '../cms/schema.js';
 const DATA_KEY = 'content:data';
 const META_KEY = 'content:meta';
 const HIST_KEY = 'content:history';
+const MIGRATION_KEY = 'content:migrations';
+
+// One-time content migrations.
+// When a hard-coded default is improved but the CMS already persisted the OLD
+// default as an override (so it keeps winning), this rewrites that stored value
+// to the new one — so the served content updates WITHOUT any manual /admin edit.
+// Safeguards: each migration runs at most once (persistent flag), and a value is
+// only rewritten when it still equals the exact OLD default, so anything the
+// owner has since customised is never touched. After it runs, the field stays
+// fully editable from /admin (a later edit wins; the migration never re-fires).
+const CONTENT_MIGRATIONS = [
+  {
+    id: 'heroTitleV1',
+    key: 'hero.title',
+    from: 'Un savoir-faire français au service de votre embarcation.',
+    to: 'Rénovation et entretien de bateaux et péniches, un savoir-faire français.',
+  },
+];
+
+let migrationsCheckedThisInstance = false;
+
+async function applyContentMigrations() {
+  if (migrationsCheckedThisInstance) return;
+  let done;
+  try { done = (await getJSON(MIGRATION_KEY)) || {}; } catch { return; } // store down: skip silently
+  const pending = CONTENT_MIGRATIONS.filter((m) => !done[m.id]);
+  if (!pending.length) { migrationsCheckedThisInstance = true; return; }
+
+  const overrides = (await getJSON(DATA_KEY)) || {};
+  let dataChanged = false;
+  for (const m of pending) {
+    if (overrides[m.key] === m.from) { overrides[m.key] = m.to; dataChanged = true; }
+    done[m.id] = true;
+  }
+  if (dataChanged) await setJSON(DATA_KEY, overrides);
+  await setJSON(MIGRATION_KEY, done);
+  migrationsCheckedThisInstance = true;
+}
 
 async function loadMerged() {
   const overrides = (await getJSON(DATA_KEY)) || {};
@@ -19,6 +57,7 @@ async function loadMerged() {
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
+    await applyContentMigrations();
     const { content, meta } = await loadMerged();
     // Public: allow brief CDN caching but keep it fresh enough that edits appear quickly.
     res.setHeader('Cache-Control', 'no-store');
