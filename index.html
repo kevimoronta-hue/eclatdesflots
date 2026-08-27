@@ -79,6 +79,12 @@
   [data-clients] img:hover { filter: grayscale(0); opacity: 1; }
   [data-clients] span { opacity: 0.7; transition: opacity 320ms ease; }
   [data-clients] span:hover { opacity: 1; }
+  /* Appareils tactiles sans hover réel (mobile, tablette) : logos toujours en couleur,
+     sans dépendre du hover ni de la largeur d'écran (un laptop souris garde le desktop). */
+  @media (hover: none), (pointer: coarse) {
+    [data-clients] img { filter: none; opacity: 1; }
+    [data-clients] span { opacity: 1; }
+  }
   @keyframes marquee-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
   [data-rail] { cursor: grab; touch-action: pan-y; -webkit-user-select: none; user-select: none; }
