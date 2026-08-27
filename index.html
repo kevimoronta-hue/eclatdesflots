@@ -1398,14 +1398,22 @@ class Component extends DCLogic {
         btn.disabled = true; btn.textContent = 'Envoi en cours…'; status('Envoi en cours…', '');
 
         try {
-          const photoData = [];
+          let photoData = [];
+          let photosDropped = false;
           if (files.length) {
-            const up = await ensureBlob();
-            for (const file of files) {
-              const r = await up('devis-photos/' + file.name, file, {
-                access: 'public', handleUploadUrl: '/api/quote-upload', contentType: file.type || 'application/octet-stream',
-              });
-              photoData.push({ url: r.url, name: file.name, size: file.size, type: file.type });
+            try {
+              const up = await ensureBlob();
+              for (const file of files) {
+                const r = await up('devis-photos/' + file.name, file, {
+                  access: 'public', handleUploadUrl: '/api/quote-upload', contentType: file.type || 'application/octet-stream',
+                });
+                photoData.push({ url: r.url, name: file.name, size: file.size, type: file.type });
+              }
+            } catch (upErr) {
+              // Stockage photos momentanément indisponible : on n'échoue pas toute la
+              // demande — on envoie le texte sans les photos plutôt que de perdre le lead.
+              photosDropped = true;
+              photoData = [];
             }
           }
           const payload = {
@@ -1415,14 +1423,23 @@ class Component extends DCLogic {
             message: F.message.el.value,
             company: (q('[name="company"]') || {}).value || '', photos: photoData,
           };
-          const resp = await fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          let resp;
+          try {
+            resp = await fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          } catch (netErr) {
+            // Vraie erreur réseau (fetch qui échoue) — distincte d'une erreur serveur.
+            status('Problème de connexion. Vos informations sont conservées — vérifiez votre réseau et réessayez.', 'err');
+            restore(); return;
+          }
           const data = await resp.json().catch(() => ({}));
           if (resp.ok && data.ok) {
             form.reset(); files = []; render(); clearErr();
             KEYS.forEach((k) => setErr(F[k], '')); setTelErr(''); setBoatOtherErr('');
             selectedIso = 'FR'; telFlag.textContent = '🇫🇷'; telDial.textContent = '+33';
             updateBoatPlaceholder(); toggleBoatOther();
-            status('Votre demande a bien été envoyée. Nous vous recontacterons rapidement.', 'ok');
+            status(photosDropped
+              ? "Votre demande a bien été envoyée ✓ — mais vos photos n'ont pas pu être jointes. Envoyez-les-nous par WhatsApp ou e-mail."
+              : 'Votre demande a bien été envoyée. Nous vous recontacterons rapidement.', 'ok');
             restore();
             return;
           }
@@ -1433,10 +1450,11 @@ class Component extends DCLogic {
             if (data.fields.boatTypeOther) { setBoatOtherErr(data.fields.boatTypeOther); if (!first) first = boatOther; }
             if (first) first.focus();
           }
+          // Erreur serveur explicite (validation, 8 Mo dépassés, format, service non configuré…)
           status((data && data.error) || "L'envoi a échoué. Merci de réessayer ou de nous appeler.", 'err');
           restore();
         } catch (err) {
-          status("L'envoi a échoué (photos ou réseau). Vos informations sont conservées — merci de réessayer.", 'err');
+          status("L'envoi n'a pas pu aboutir. Vos informations sont conservées — merci de réessayer.", 'err');
           restore();
         }
       });
