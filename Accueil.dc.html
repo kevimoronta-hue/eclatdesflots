@@ -1901,25 +1901,62 @@ class Component extends DCLogic {
         setVolUI(next);
       });
 
+      // — Plein écran —
+      // Desktop / Android / iPad : plein écran d'ÉLÉMENT sur le conteneur → l'UI
+      // personnalisée reste, la vidéo est centrée en 9:16 (fitFrame), bandes noires.
+      // iPhone : pas de plein écran d'élément dans iOS → repli sur le plein écran
+      // VIDÉO natif (même instance, aucun reload, timestamp conservé, ratio 9:16 géré
+      // par le système). Une seule instance dans tous les cas, jamais de second player.
+      const canElementFs = !!(fsWrap.requestFullscreen || fsWrap.webkitRequestFullscreen);
+      const videoEl = () => { const h = q('[data-wistia]'); return h ? h.querySelector('video') : null; };
+      const isNativeFs = () => (document.fullscreenElement || document.webkitFullscreenElement) === fsWrap;
+      const enterFs = () => {
+        if (canElementFs) {
+          if (fsWrap.requestFullscreen) fsWrap.requestFullscreen();
+          else if (fsWrap.webkitRequestFullscreen) fsWrap.webkitRequestFullscreen();
+          return;
+        }
+        const v = videoEl(); // iPhone
+        if (v && typeof v.webkitEnterFullscreen === 'function') { try { v.webkitEnterFullscreen(); } catch (e) {} }
+      };
+      const exitFs = () => {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else { const v = videoEl(); if (v && typeof v.webkitExitFullscreen === 'function') { try { v.webkitExitFullscreen(); } catch (e) {} } }
+      };
       if (fsBtn) fsBtn.addEventListener('click', () => {
-        const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
-        if (fsEl) {
-          if (document.exitFullscreen) document.exitFullscreen();
-          else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-        } else if (fsWrap.requestFullscreen) fsWrap.requestFullscreen();
-        else if (fsWrap.webkitRequestFullscreen) fsWrap.webkitRequestFullscreen();
+        if (isNativeFs()) exitFs(); else enterFs();
+        showBar(true);
       });
-      const onFs = () => {
-        const on = (document.fullscreenElement || document.webkitFullscreenElement) === fsWrap;
+
+      const setFsIcons = (on) => {
         if (iFs) iFs.style.display = on ? 'none' : 'block';
         if (iExit) iExit.style.display = on ? 'block' : 'none';
         if (fsBtn) fsBtn.setAttribute('aria-label', on ? 'Quitter le plein écran' : 'Plein écran');
+      };
+      const onFs = () => {
+        const on = isNativeFs();
+        setFsIcons(on);
         if (on) bar.style.display = 'flex';
         setTimeout(fitFrame, 60);
-        setTimeout(fitFrame, 300);
+        setTimeout(fitFrame, 300); // recalage 9:16 après la bascule (entrée ET sortie)
       };
       document.addEventListener('fullscreenchange', onFs);
       document.addEventListener('webkitfullscreenchange', onFs);
+
+      // iPhone : synchroniser l'icône + recaler à l'entrée/sortie du plein écran vidéo iOS
+      // (iOS affiche ses propres contrôles pendant ce plein écran ; on ne double jamais le player).
+      const bindVideoFs = () => {
+        const v = videoEl();
+        if (!v || v.dataset.vcFsBound === '1') return;
+        v.dataset.vcFsBound = '1';
+        v.addEventListener('webkitbeginfullscreen', () => { setFsIcons(true); });
+        v.addEventListener('webkitendfullscreen', () => { setFsIcons(false); setTimeout(fitFrame, 60); setTimeout(fitFrame, 300); });
+      };
+      bindVideoFs();
+      if (host && window.MutationObserver) {
+        new MutationObserver(bindVideoFs).observe(host, { childList: true, subtree: true });
+      }
 
       window.__lecVCBinds = window.__lecVCBinds || [];
       window._wq = window._wq || [];
